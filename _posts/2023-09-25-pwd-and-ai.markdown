@@ -3,6 +3,10 @@ layout: post
 title:  "People with Disability and AI: Focusing on People with Vision Impairment"
 date:   2023-09-25 23:59:37 +0900
 categories: 
+authors: 
+  - hoyeon
+  - jeanne
+  - eunki
 ---
 
 # Abstract
