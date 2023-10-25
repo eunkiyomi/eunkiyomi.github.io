@@ -1,3 +1,20 @@
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDRdY2DtGfkuAbfGOg3Imu6gEe18PsW3dI",
+  authDomain: "personal-395509.firebaseapp.com",
+  projectId: "personal-395509",
+  storageBucket: "personal-395509.appspot.com",
+  messagingSenderId: "369762369220",
+  appId: "1:369762369220:web:a51071ee8b50fa6ebf1391",
+  measurementId: "G-LSJVHZ48J4"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the Firestore service
+const db = firebase.firestore();
+
+
 // Define the greetings
 const greetings = [
   { text: '인사하는 손짓', emoji: '👋🙋‍♀️' },
@@ -46,7 +63,7 @@ class GreetingController {
   addGreeting() {
     const nickname = this.view.nicknameInput.value;
     const greeting = this.view.greetingSelect.value;
-    this.model.addGreeting(`${nickname}(이)가 ${greeting}을 보냈다.`);
+    this.model.addGreeting(`${nickname}(이)가 ${greeting}을 했다.`);
   }
 
   prevPage() {
@@ -68,6 +85,15 @@ class GreetingModel {
     this.currentPage = 0;
     this.messagesPerPage = 15;
     this.subscribers = [];
+
+    // Load the greetings from Firestore
+    db.collection("greetings").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const greeting = doc.data();
+        this.greetings.push(greeting.text);
+      });
+      this.notifySubscribers();
+    });
   }
 
   subscribe(observerFunction) {
@@ -84,6 +110,17 @@ class GreetingModel {
       this.currentPage++;
     }
     this.notifySubscribers();
+
+    // Add the greeting to Firestore
+    db.collection("greetings").add({
+      text: greeting
+    })
+    .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
   }
 
   setPage(page) {

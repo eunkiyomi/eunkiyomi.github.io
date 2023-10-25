@@ -5,6 +5,9 @@ authors:
 - eunki
 ---
 
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
 <!-- Interaction -->
 <div id="messageBox" style="border: 1px solid black; height: 500px; position: relative;"></div>
 <p id="pageLabel"></p>
