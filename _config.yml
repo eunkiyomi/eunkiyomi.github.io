@@ -18,17 +18,17 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: INFJ Team Blog
-email: ppyapmail@gmail.com
+title: Eunki's Salon
+email: eunki@kaist.ac.kr
 description: >- # this means to ignore newlines until "baseurl:"
-  A collaborative blog of Team INFJ.
-  We are a group of students who are passionate about sharing our thoughts about social issues and technology.
+  I hope you feel peaceful here.
+  Eunki's salon. A silent, inclusive place.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  team-infj
+github_username: eunkiyomi
 
 # Build settings
-remote_theme: no-style-please
+remote_theme: riggraz/no-style-please
 
 theme_config:
   appearance: "auto" # can be "light", "dark" or "auto"
