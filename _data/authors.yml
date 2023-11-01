@@ -3,3 +3,5 @@ eunki:
   name: Eunki Joung
   bio: "I am Eunki."
   email: "eunki@kaist.ac.kr"
+guests:
+  name: You
