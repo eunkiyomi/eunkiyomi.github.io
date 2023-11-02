@@ -73,4 +73,3 @@ When this button is clicked, the constructed greeting message will be added to t
 
 - Code `symbolic_interactions.js` for implementing this design. -->
 
-
