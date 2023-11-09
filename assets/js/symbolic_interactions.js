@@ -92,7 +92,7 @@ class GreetingModel {
      */
     this.greetings = [];
     this.currentPage = 0;
-    this.messagesPerPage = 15;
+    this.messagesPerPage = 6;
     this.subscribers = [];
 
     // Load the greetings from Firestore
@@ -147,6 +147,7 @@ class GreetingModel {
 class GreetingView {
   constructor() {
     this.messageBox = document.getElementById('messageBox');
+    this.boxes = this.messageBox.querySelectorAll('.box');
     this.nicknameInput = document.getElementById('nicknameInput');
     this.nicknameParticle = document.getElementById('nicknameParticle');
     
@@ -160,14 +161,6 @@ class GreetingView {
     this.prevButton = document.getElementById('prevButton');
     this.nextButton = document.getElementById('nextButton');
     this.pageLabel = document.getElementById('pageLabel');
-  }
-
-  arrange(message) {
-    const x = Math.floor(Math.random() * this.messageBox.offsetWidth);
-    const y = Math.floor(Math.random() * this.messageBox.offsetHeight);
-    message.style.position = 'absolute';
-    message.style.left = `${x}px`;
-    message.style.top = `${y}px`;
   }
 
   setCustomGreetingMode(mode) {
@@ -204,17 +197,20 @@ class GreetingView {
   }
 
   render(model) {
-    // Clear the message box
-    this.messageBox.innerHTML = '';
+    // Clear the boxes
+    this.boxes.forEach(box => box.innerText = '');
 
     // Add messages for the current page
     const start = model.currentPage * model.messagesPerPage;
     const end = start + model.messagesPerPage;
-    model.greetings.slice(start, end).forEach(greeting => {
-      const message = document.createElement('p');
-      message.textContent = `${greeting.nickname}${this._chooseParticle(greeting.nickname)} ${greeting.text}`;
-      this.messageBox.appendChild(message);
-      this.arrange(message);
+
+    const greetingsInPage = model.greetings.slice(start, end);
+    const shuffledBoxes = Array.from(this.boxes).sort(() => 0.5 - Math.random());
+    const selectedBoxes = shuffledBoxes.slice(0, greetingsInPage.length);
+
+    greetingsInPage.forEach((greeting, i) => {
+      const text = `${greeting.nickname}${this._chooseParticle(greeting.nickname)} ${greeting.text}`;
+      selectedBoxes[i].innerText = text;
     });
 
     // Update the page label
