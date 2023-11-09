@@ -13,10 +13,25 @@ authors:
 
 <!-- # Style -->
 <style>
+
 #messageBox {
   border: 1px solid black; 
   height: 500px; 
   position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#messageBox .box {
+  width: 50%;
+  height: 20%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
 }
 
 #customGreetingDiv {
@@ -25,7 +40,18 @@ authors:
 </style>
 
 <!-- # Body -->
-<div id="messageBox"></div>
+<div id="messageBox">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
 <p id="pageLabel"></p>
 <button id="prevButton" type="button">Previous</button>
 <button id="nextButton" type="button">Next</button>
