@@ -9,6 +9,10 @@ authors:
 
 <div id="hello-react"></div>
 
+```html
+<div id="hello-react"></div>
+```
+
 ## Procedure
 
 ### Setting Node
