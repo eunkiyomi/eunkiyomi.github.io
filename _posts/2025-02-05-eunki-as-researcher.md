@@ -5,7 +5,9 @@ authors:
 - eunki
 ---
 
-![Profile](/assets/img/daisy.jpeg) (Eunki loves daisy🌼)
+![Profile](/assets/img/daisy.jpeg) (Eunki loves daisy🌼[^daisy]) 
+
+[^daisy]: Try this track: [*Daisy*](https://www.youtube.com/watch?v=x-sNrLXFerk) by Bye Bye Badman
 
 # hi, i am
 
@@ -40,6 +42,7 @@ At the same time, I have experiences with and fondness for the following objects
     - **Theories:** Again, very broad category. In my use, these are the texts that interpret the world (represented by a lot of available materials) through a particular lens. If this kind of work does not involve the fieldwork, I call it a 'theory.'
       - Please see [Human, Place, Hospitality](https://books.google.co.kr/books?id=TQ6vDQAAQBAJ)! Maybe 10 times (again, I am sorry only Korean version is available). The main question of this book is: "When we be human?" "Were we human since we were born? What kind of 'hospitality' let us be a member of society, and thus a human?" It covers various sites and identities (e.g., women, soldiers, disabled people) where they are excluded from, or conditionally included to the society, and thus the position of 'human' is not guaranteed. I read this book when I was a college student, and its insightful theoretical viewpoints have been motivating me to study (not just advocate) inclusion of marginzalized, not 'normal' people. 
       - 'Normal,' with the quotation marks? The former book had led me to be interested in Erving Goffman, a 20C sociologist who left a lot of insights on the construction of the 'normal' and the experiences and strategies of people who are not 'normal,' such as people with [stigma](https://en.wikipedia.org/wiki/Stigma:_Notes_on_the_Management_of_Spoiled_Identity), people in [asylums](https://en.wikipedia.org/wiki/Asylums_(book)), or people who fell into temporary 'abnormal' situations (See [The Presentation of Self in Everyday Life](https://en.wikipedia.org/wiki/The_Presentation_of_Self_in_Everyday_Life) or [Interaction Ritual](https://en.wikipedia.org/wiki/Interaction_Ritual:_Essays_on_Face-to-Face_Behavior)). Among these, my favorite is Stigma (1963), which describes how the stigmatized people manage their visible cues of identity like a game, revealing and concealing them in a strategic way. 
+        - Also, Goffman investigated a lot about 'symbolic' interactions, such as greeting. If you want, you can give a warm greet to me here: The [Guest Book](https://eunkiyomi.github.io/2023/10/26/symbolic-interactions.html). 
 
 # good bye ... for now
 ![GIF image: I am pretending to write something down](/assets/img/writing.gif)(This post is evolving. I will add more in the future. Stay tuned!) 
