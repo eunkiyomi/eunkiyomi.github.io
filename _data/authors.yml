@@ -1,7 +1,7 @@
 # _data/authors.yml
 eunki:
-  name: Eunki Joung
-  bio: "I am Eunki."
+  name: eunki
+  bio: "I am Eunki. Eunki Joung. They/Them or He/Him"
   email: "eunki@kaist.ac.kr"
 guests:
   name: You
