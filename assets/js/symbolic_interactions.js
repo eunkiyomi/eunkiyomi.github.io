@@ -16,12 +16,18 @@ const db = firebase.firestore();
 
 // Define the greetings
 const greetings = [
+  "Made a greeting gesture 👋🙋‍♀️",
+  "Rang the bicycle bell ding-ding 🛎️",
+  "Tapped on the shoulder lightly 🤚",
+  "Called the name 🏷️",
+  "Clinked glasses 🍻🥂",
+  "----",
   "인사하는 손짓을 했다 👋🙋‍♀️",
   "자전거 벨을 땡땡 울렸다 🛎️",
   "어깨를 툭툭 쳤다 🤚",
   "이름을 불렀다 🏷️",
   "건배를 짠 했다 🍻🥂",
-  "직접 쓰기 ...", 
+  "Manual Input...(직접 쓰기 ...)", 
 ];
 
 // Get the elements
