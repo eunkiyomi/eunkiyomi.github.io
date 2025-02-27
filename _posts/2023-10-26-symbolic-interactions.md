@@ -39,6 +39,8 @@ authors:
 }
 </style>
 
+([Eunki as a Researcher](/2025/02/05/eunki-as-researcher.html))
+
 <!-- # Body -->
 <div id="messageBox">
   <div class="box"></div>
