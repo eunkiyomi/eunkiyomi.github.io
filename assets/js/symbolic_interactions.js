@@ -215,7 +215,8 @@ class GreetingView {
     const selectedBoxes = shuffledBoxes.slice(0, greetingsInPage.length);
 
     greetingsInPage.forEach((greeting, i) => {
-      const text = `${greeting.nickname}${this._chooseParticle(greeting.nickname)} ${greeting.text}`;
+      // const text = `${greeting.nickname}${this._chooseParticle(greeting.nickname)} ${greeting.text}`;
+      const text = `${greeting.nickname} ${greeting.text}`;
       selectedBoxes[i].innerText = text;
     });
 

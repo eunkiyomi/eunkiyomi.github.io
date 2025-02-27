@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Guest Book
+title: Guest Book (Symbolic Interactions)
 custom_js: symbolic_interactions
 authors: 
 - guests
@@ -56,15 +56,14 @@ authors:
 <button id="prevButton" type="button">Previous</button>
 <button id="nextButton" type="button">Next</button>
 <form>
-  <input id="nicknameInput" placeholder="닉네임" type="text" size="15">
-  이(가)
+  <input id="nicknameInput" placeholder="Nickname" type="text" size="15">
   <div id="customGreetingDiv">
     <input id="greetingTextInput" type="text" name="greetingTextInput" 
-          placeholder="인사">
+          placeholder="Greeting">
     <input id="greetingEmojiInput" type="text" name="greetingEmojiInput" 
-          placeholder="이모지" size="5" >
+          placeholder="Emoji" size="5" >
   </div>
   <select id="greetingSelect"></select>
-  <button id="sendButton" type="button">올리기</button>
+  <button id="sendButton" type="button">Upload</button>
 </form>
 
