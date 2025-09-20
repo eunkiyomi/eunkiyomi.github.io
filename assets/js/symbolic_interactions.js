@@ -73,7 +73,7 @@ class GreetingController {
   }
 
   selectGreeting() {
-    if (this.view.greetingSelect.value === '직접 쓰기 ...') {
+    if (this.view.greetingSelect.value === 'Manual Input...') {
       this.view.setCustomGreetingMode(true);
     } else {
       this.view.setCustomGreetingMode(false);
