@@ -55,8 +55,9 @@ At the same time, I have experiences with and fondness for the following objects
     - 'Normal,' with the quotation marks? The former book had led me to be interested in Erving Goffman, a 20C sociologist who left a lot of insights on the construction of the 'normal' and the experiences and strategies of people who are not 'normal,' such as people with [stigma](https://en.wikipedia.org/wiki/Stigma:_Notes_on_the_Management_of_Spoiled_Identity), people in [asylums](https://en.wikipedia.org/wiki/Asylums_(book)), or people who fell into temporary 'abnormal' situations (See [The Presentation of Self in Everyday Life](https://en.wikipedia.org/wiki/The_Presentation_of_Self_in_Everyday_Life) or [Interaction Ritual](https://en.wikipedia.org/wiki/Interaction_Ritual:_Essays_on_Face-to-Face_Behavior)). Among these, my favorite is Stigma (1963), which describes how stigmatized people manage their visible cues of identity like a game, revealing and concealing them strategically. 
       - Also, Goffman investigated a lot about 'symbolic' interactions, such as greetings. *If you want, you can give a warm greet to me here: The [Guest Book](https://eunkiyomi.github.io/2023/10/26/symbolic-interactions.html).*
 
-## good bye ... temporarily
-![GIF image: I am pretending to write something down](/assets/img/writing.gif){: style="width: 100px; height: auto; display: block; margin-left: auto; margin-right: auto;"}
+## good bye ...
 
 This post is evolving. I will add more in the future. Stay tuned!
+
+Or, check my [winter]({% link test_sub.md %}).
 
