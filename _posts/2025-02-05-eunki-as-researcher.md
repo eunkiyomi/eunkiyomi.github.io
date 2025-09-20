@@ -21,9 +21,11 @@ body {
 
 **Eunki Joung**. I am a prospective PhD student in HCI, Care, and Ethnography. 
 
-I studied with Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved Master's degree in School of Computing.
+I studied with Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved a Master's degree in School of Computing.
 
 If you want a formal introduction, please see my [CV](/assets/docs/Eunki_s_CV.pdf).
+
+Or, [a selected list of my writings](https://linktr.ee/eunkiyomi).
 
 As a researcher, I am interested in the following broad questions:
 - Whose voices are invisible?
