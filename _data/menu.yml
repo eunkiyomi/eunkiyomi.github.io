@@ -5,9 +5,15 @@ entries:
   - title: info
     entries:
       - title: "This is Eunki's salon: love love love."
-  - title: all posts
+  - title: useful links
+    entries:
+      - title: eunki as a researcher
+        url: {% link _posts/2025-02-05-eunki-as-researcher.md %}
+      - title: say hi
+        url: {% link _posts/2025-02-09-winter.md %}
+  - title: recent posts
     post_list:
-      limit: 50
+      limit: 2
       show_more: true
       show_more_text: See archive...
       show_more_url: archive.html
