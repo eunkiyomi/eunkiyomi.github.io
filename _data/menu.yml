@@ -8,9 +8,9 @@ entries:
   - title: useful links
     entries:
       - title: eunki as a researcher
-        url: "{% link _posts/2025-02-05-eunki-as-researcher.md %}"
+        url: /2025/02/05/eunki-as-researcher.html
       - title: say hi
-        url: "{% link _posts/2025-02-09-winter.md %}"
+        url: /2023/10/26/symbolic-interactions.html
   - title: recent posts
     post_list:
       limit: 2
