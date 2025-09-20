@@ -19,9 +19,9 @@ body {
 
 # hi, i am
 
-**Eunki Joung**. I am a master's student in HCI (Human-Computer Interaction). 
+**Eunki Joung**. I am a prospective PhD student in HCI, Care, and Ethnography. 
 
-I am studying with Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST.
+I studied with Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved Master's degree in School of Computing.
 
 If you want a formal introduction, please see my [CV](/assets/docs/Eunki_s_CV.pdf).
 
@@ -32,14 +32,11 @@ As a researcher, I am interested in the following broad questions:
 
 [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well at particular contexts, which I hope to explore.
 
-(Do not panic 🤖! These are very broad questions; connecting them with HCI and my experiences needs more work. I will be gradually more specific in the following paragraphs. Stay tuned!)
-
 ## experiences and fondness
 
 At the same time, I have experiences with and fondness for the following objects:
 - **Programming languages** and the **artifacts** realized by them. 
-  - I love Cumpa, a caring companion for mindful self-exploration, that I built with my colleagues. 
-  - (What is Cumpa? That will be something I will write another post about.)
+  - I love Cumpa, a caring companion for mindful self-exploration, that I built with my colleagues. (Check it here: [A CSCW 2025 paper](https://ic.kaist.ac.kr/publications/papers/lee2025cumpa.pdf))
   - As a magic wand that can make my imagination real and as lego blocks that can be arranged in perfect order, programming languages have been my favorite toys since I was a child. (You may find my fondness for the art of programming in this blog.)
   - But at the same time, I am opposed to the idea that programming languages, or moreover the computer science, are solely the magic wand that will solve all the problems without harm. (You may also find my thoughts on this in various places in this blog.)
   - Stay tuned! I will gradually update the projects I have been working on 🪼.
