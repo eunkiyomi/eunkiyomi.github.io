@@ -59,5 +59,5 @@ At the same time, I have experiences with and fondness for the following objects
 
 This post is evolving. I will add more in the future. Stay tuned!
 
-Or, check my [winter]({% link 2025-02-09-winter.md %}).
+Or, check my [winter]({% link _posts/2025-02-09-winter.md %}).
 
