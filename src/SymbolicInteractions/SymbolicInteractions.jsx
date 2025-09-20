@@ -27,7 +27,7 @@ export default function SymbolicInteractions() {
   function addGreeting() {
     const nickname = this.view.nicknameInput.value;
     let text;
-    if (greetingSelect.value === '직접 쓰기 ...') {
+    if (greetingSelect.value === 'Manual Input...') {
       text = `${this.view.greetingTextInput.value} ${this.view.greetingEmojiInput.value}`;
     } else {
       text = this.view.greetingSelect.value;
