@@ -17,6 +17,14 @@ entries:
       show_more: true
       show_more_text: See archive...
       show_more_url: archive.html
+  - title: find me in
+    entries:
+      - title: email
+        url: mailto:eunki.joung@gmail.com?Subject=Hi%20Eunki!
+      - title: linkedin
+        url: https://www.linkedin.com/in/eunki-joung-0b679016b
+      - title: twitter
+        url: https://x.com/eunkiyomi
 
   # - title: rss
   #   url: feed.xml
