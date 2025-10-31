@@ -21,7 +21,7 @@ body {
 
 **Eunki Joung**. I am a prospective PhD student in HCI, Care, and Ethnography. 
 
-I studied with Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved a Master's degree in School of Computing.
+I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved a Master's degree in Computing.
 
 If you want a formal introduction, please see my [CV](/assets/docs/Eunki_s_CV.pdf).
 
@@ -34,6 +34,18 @@ As a researcher, I am interested in the following broad questions:
 
 [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well at particular contexts, which I hope to explore.
 
+## some readings that have influenced my reseach journey (not exclusive)
+
+- [Stigma: Notes on the Management of Spoiled Identity](https://en.wikipedia.org/wiki/Stigma:_Notes_on_the_Management_of_Spoiled_Identity), Erving Goffman 
+- [Poverty as Process: The Arrangement of Poverty and the Anthropology of the Vulnerable Lives](https://product.kyobobook.co.kr/detail/S000200204406), Mun Young Jo
+- [The Social Life of Small Urban Spaces](https://en.wikipedia.org/wiki/The_Social_Life_of_Small_Urban_Spaces), William H. Whyte
+- [Human, Place, Hospitality](https://books.google.co.kr/books?id=TQ6vDQAAQBAJ), Hyun Kyung Kim
+- [When Species Meet](https://www.upress.umn.edu/9780816650460/when-species-meet/), Donna J. Haraway
+
+## good bye ...
+Or, check my [winter]({% link _posts/2025-02-09-winter.md %}).
+
+<!-- 
 ## experiences and fondness
 
 At the same time, I have experiences with and fondness for the following objects:
@@ -57,7 +69,5 @@ At the same time, I have experiences with and fondness for the following objects
 
 ## good bye ...
 
-This post is evolving. I will add more in the future. Stay tuned!
-
-Or, check my [winter]({% link _posts/2025-02-09-winter.md %}).
+This post is evolving. I will add more in the future. Stay tuned! -->
 
