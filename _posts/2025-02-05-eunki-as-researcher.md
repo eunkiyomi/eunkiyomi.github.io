@@ -21,11 +21,9 @@ body {
 
 **Eunki Joung**. I am a prospective PhD student in HCI, Care, and Ethnography. 
 
-I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved a Master's degree in Computing.
+I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved M.S. and B.S. in Computing.
 
-For additional information, please see my [CV](/assets/docs/Eunki_s_CV.pdf).
-
-Or, [a selected list of my writings](https://linktr.ee/eunkiyomi).
+Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [a selected list of writings](https://linktr.ee/eunkiyomi).
 
 As a researcher, I am interested in the following broad questions:
 - Whose voices are invisible?
@@ -34,7 +32,7 @@ As a researcher, I am interested in the following broad questions:
 
 My work has been presented at CSCW and in workshops at CHI and CSCW.
 
-I hold M.S. and B.S. in Computing from KAIST, where I also served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor.
+I served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor at KAIST.
 
 [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore.
 
