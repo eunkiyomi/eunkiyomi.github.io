@@ -23,7 +23,7 @@ body {
 
 I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved a Master's degree in Computing.
 
-If you want a formal introduction, please see my [CV](/assets/docs/Eunki_s_CV.pdf).
+For additional information, please see my [CV](/assets/docs/Eunki_s_CV.pdf).
 
 Or, [a selected list of my writings](https://linktr.ee/eunkiyomi).
 
@@ -32,15 +32,26 @@ As a researcher, I am interested in the following broad questions:
 - How can we bring those invisible voices to public spheres[^public-spheres]?
 - What should those public spheres look like?
 
-[^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well at particular contexts, which I hope to explore.
+My work has been presented at CSCW and in workshops at CHI and CSCW.
+
+I hold M.S. and B.S. in Computing from KAIST, where I also served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor.
+
+[^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore.
 
 ## some readings that have influenced my reseach journey (not exclusive)
 
 - [Stigma: Notes on the Management of Spoiled Identity](https://en.wikipedia.org/wiki/Stigma:_Notes_on_the_Management_of_Spoiled_Identity), Erving Goffman 
-- [Poverty as Process: The Arrangement of Poverty and the Anthropology of the Vulnerable Lives](https://product.kyobobook.co.kr/detail/S000200204406), Mun Young Jo
-- [The Social Life of Small Urban Spaces](https://en.wikipedia.org/wiki/The_Social_Life_of_Small_Urban_Spaces), William H. Whyte
+  > Marginalization embedded in social interactions
 - [Human, Place, Hospitality](https://books.google.co.kr/books?id=TQ6vDQAAQBAJ), Hyun Kyung Kim
+  > Imagining 'absolute hospitality,' based on Goffman's analysis.
+- [Poverty as Process: The Arrangement of Poverty and the Anthropology of the Vulnerable Lives](https://product.kyobobook.co.kr/detail/S000200204406), Mun Young Jo
+  > My favorite ethnography
+- [The Social Life of Small Urban Spaces](https://en.wikipedia.org/wiki/The_Social_Life_of_Small_Urban_Spaces), William H. Whyte
+  > How placemaking can enact alternative social interactions
 - [When Species Meet](https://www.upress.umn.edu/9780816650460/when-species-meet/), Donna J. Haraway
+  > Cum panis, or the multispeices (humans, robots, and other critters) who care each other
+- [Momo](https://en.wikipedia.org/wiki/Momo_(novel)), Michael Ende
+  > Listening and alternative temporalities
 
 ## good bye ...
 Or, check my [winter]({% link _posts/2025-02-09-winter.md %}).
