@@ -7,15 +7,15 @@ entries:
       - title: "This is Eunki's salon: love love love."
   - title: useful links
     entries:
-      - title: eunki as a researcher
+      - title: Eunki as a Researcher
         url: /2025/02/05/eunki-as-researcher.html
-      - title: say hi
-        url: /2023/10/26/symbolic-interactions.html
+      - title: CV
+        url: /assets/docs/Eunki_s_CV.pdf
   - title: recent posts
     post_list:
       limit: 2
       show_more: true
-      show_more_text: See archive...
+      show_more_text: See more...
       show_more_url: archive.html
   - title: find me in
     entries:
@@ -23,8 +23,10 @@ entries:
         url: mailto:eunki.joung@gmail.com?Subject=Hi%20Eunki!
       - title: linkedin
         url: https://www.linkedin.com/in/eunki-joung-0b679016b
-      - title: twitter
-        url: https://x.com/eunkiyomi
+  - title: have fun
+    entries:
+      - title: say hi
+        url: /2023/10/26/symbolic-interactions.html
 
   # - title: rss
   #   url: feed.xml
