@@ -12,10 +12,8 @@ body {
 }
 </style>
 
-![Profile](/assets/img/daisy.jpeg){: style="width: 300px; height: auto; display: inline-block; margin-right: 20px;"}
+[![Profile](/assets/img/daisy.jpeg){: style="width: 300px; height: auto; display: inline-block; margin-right: 20px;"}](https://www.youtube.com/watch?v=x-sNrLXFerk)
 ![Portrait](/assets/img/portrait.jpg){: style="width: 300px; height: auto; display: inline-block;"}
-
-^daisy: Try this track: [*Daisy*](https://www.youtube.com/watch?v=x-sNrLXFerk) by Bye Bye Badman
 
 # hi, i am
 
