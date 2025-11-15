@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Eunki as a Researcher
+redirect_from: "/research/"
 authors:
 - eunki
 ---
