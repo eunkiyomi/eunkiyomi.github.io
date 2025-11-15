@@ -60,13 +60,15 @@ What if Cumpa is with the dogs, or broadly with the beings whose voices are rega
 
 ### Related Publications
 
-* My master's thesis about an *active listening* AI agent is currently under review.
-* Chanhee Lee∗, **Eunki Joung∗**, Youngji Koh, Esther Kim, Sohwi Son, Sun Jung Kwon, and Uichin Lee. [‘In That Small Space with Just the Two of Us’: User Experiences with Cumpa in a Robotic Counseling Center](https://dl.acm.org/doi/10.1145/3757533). In Proceedings of the ACM on Human-Computer Interaction Volume 9, Issue 7 (CSCW 2025). ∗: equal contribution
-* **Eunki Joung**, Nguyen Linh, and Uichin Lee. [Enhancing Trust in Mental Health Agents: A DevOps Approach to Continuous Feedback Reflection](https://cui.acm.org/workshops/CHI2024/wp-content/uploads/2024/04/Enhancing-Trust-in-Mental-Health-Agents-A-DevOps-Approach-to-Continuous-Feedback-Reflection.pdf). In CHI Workshop (CUI@CHI 2024: Building Trust in CUIs — From Design to Deployment)
+1. My master's thesis about an *active listening* AI agent is currently under review.
+2. Chanhee Lee∗, **Eunki Joung∗**, Youngji Koh, Esther Kim, Sohwi Son, Sun Jung Kwon, and Uichin Lee. [‘In That Small Space with Just the Two of Us’: User Experiences with Cumpa in a Robotic Counseling Center](https://dl.acm.org/doi/10.1145/3757533). In Proceedings of the ACM on Human-Computer Interaction Volume 9, Issue 7 (CSCW 2025). ∗: equal contribution
+3. **Eunki Joung**, Nguyen Linh, and Uichin Lee. [Enhancing Trust in Mental Health Agents: A DevOps Approach to Continuous Feedback Reflection](https://cui.acm.org/workshops/CHI2024/wp-content/uploads/2024/04/Enhancing-Trust-in-Mental-Health-Agents-A-DevOps-Approach-to-Continuous-Feedback-Reflection.pdf). In CHI Workshop (CUI@CHI 2024: Building Trust in CUIs — From Design to Deployment)
 
 ### Related Exhibition
 
 [Cumpa: Robotic Counseling Center @ KAIST Art Museum](https://art.kaist.ac.kr/doc/ko/ori.do?docSeq=3764)
+
+### Footnotes
 
 [^sophie]: This interpretation of the drama [Dog Sound] is much inspired by Jinmi Hwang's critique in the 1113th episode of *TV Critique: Viewers Desk* (KBS, 2024).
 
