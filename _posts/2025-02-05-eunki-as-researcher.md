@@ -18,22 +18,23 @@ body {
 
 # hi, i am
 
-**Eunki Joung**. I am a prospective PhD student in HCI, Care, and Ethnography. 
+**Eunki Joung**. I am a prospective PhD student in Human-Computer Interaction (HCI), Computer-Supported Cooperative Work (CSCW), and Science and Technology Studies (STS). 
 
-I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I recieved M.S. and B.S. in Computing.
+I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computing.
 
 Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [a selected list of writings](https://linktr.ee/eunkiyomi).
 
-As a researcher, I am interested in the following broad questions:
-- Whose voices are invisible?
-- How can we bring those invisible voices to public spheres[^public-spheres]?
-- What should those public spheres look like?
+As a researcher, I am interested in the following question:
 
-My work has been presented at CSCW and in workshops at CHI and CSCW.
+> How can we, a team of **interdependent** people, technology, nature, and researchers, **listen to** others?
+
+By *listening*, I mean broadly an active effort to understand and connect to un-understandable, marginalized others. I pursue making better social worlds through describing and designing alternatives of sociotechnical systems, being aware of *interdepenency* in such systems.
+
+I've designed and studied [Cumpa]({% link _posts/2025-11-15-notes-on-cumpa.md %}), a counseling robot, discussing its potential as an active listener and how it is situated in the campus-wide mental healthcare infrastructure. My work has been presented at CSCW and in workshops at CHI and CSCW.
 
 I served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor at KAIST.
 
-[^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore.
+<!-- [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore. -->
 
 ## some readings that have influenced my reseach journey (not exclusive)
 
@@ -49,6 +50,14 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
   > Cum panis, or the multispeices (humans, robots, and other critters) who care each other
 - [Momo](https://en.wikipedia.org/wiki/Momo_(novel)), Michael Ende
   > Listening and alternative temporalities
+
+<!-- ## a short memo on programming
+
+As a ✨magic wand✨ making my imagination real and lego blocks I can arrange in a perfect order, programming languages have been my favorite toys since I was a child.
+
+But at the same time, I am opposed to the idea that programming languages, or moreover the computer science, are solely the ✨magic wand✨ that will solve all the problems without harm.
+
+My inquiries and troubles are situated in this tension. I believe the power of critical and creative designs to navigate this tension and make computers indeed magical. -->
 
 ## good bye ...
 Or, check my [winter]({% link _posts/2025-02-09-winter.md %}).
