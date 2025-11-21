@@ -48,7 +48,7 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
 - [When Species Meet](https://www.upress.umn.edu/9780816650460/when-species-meet/), Donna J. Haraway
   > Cum panis, or the multispeices (humans, robots, and other critters) who care each other
 - [Momo](https://en.wikipedia.org/wiki/Momo_(novel)), Michael Ende
-  > Listening and alternative temporalities
+  > Listening and alternative temporalities ([my note]({% link _posts/2025-09-25-grandma.md %}))
 - [Ways of Seeing](https://en.wikipedia.org/wiki/Ways_of_Seeing), John Berger
   > Seeing is placemaking
 
