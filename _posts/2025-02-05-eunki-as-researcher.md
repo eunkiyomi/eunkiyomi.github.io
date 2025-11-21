@@ -42,13 +42,15 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
 - [Human, Place, Hospitality](https://books.google.co.kr/books?id=TQ6vDQAAQBAJ), Hyun Kyung Kim
   > Imagining 'absolute hospitality,' based on Goffman's analysis.
 - [Poverty as Process: The Arrangement of Poverty and the Anthropology of the Vulnerable Lives](https://product.kyobobook.co.kr/detail/S000200204406), Mun Young Jo
-  > My favorite ethnography
+  > My favorite ethnography about poverty in South Korea and China
 - [The Social Life of Small Urban Spaces](https://en.wikipedia.org/wiki/The_Social_Life_of_Small_Urban_Spaces), William H. Whyte
   > How placemaking can enact alternative social interactions
 - [When Species Meet](https://www.upress.umn.edu/9780816650460/when-species-meet/), Donna J. Haraway
   > Cum panis, or the multispeices (humans, robots, and other critters) who care each other
 - [Momo](https://en.wikipedia.org/wiki/Momo_(novel)), Michael Ende
   > Listening and alternative temporalities
+- [Ways of Seeing](https://en.wikipedia.org/wiki/Ways_of_Seeing), John Berger
+  > Seeing is placemaking
 
 <!-- ## a short memo on programming
 
