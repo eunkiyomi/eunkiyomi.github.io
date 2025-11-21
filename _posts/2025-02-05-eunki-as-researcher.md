@@ -24,11 +24,10 @@ I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.
 
 Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [a selected list of writings](https://linktr.ee/eunkiyomi).
 
-As a researcher, I am interested in the following question:
-
-> How can we, a team of **interdependent** people, technology, nature, and researchers, **listen to** others?
-
-By *listening*, I mean broadly an active effort to understand and connect to un-understandable, marginalized others. I pursue making better social worlds through describing and designing alternatives of sociotechnical systems, being aware of *interdepenency* in such systems.
+As a researcher, I am interested in the following broad questions:
+- Whose voices are invisible?
+- How can we bring those invisible voices to public spheres[^public-spheres]?
+- What should those public spheres look like?
 
 I've designed and studied [Cumpa]({% link _posts/2025-11-15-notes-on-cumpa.md %}), a counseling robot, discussing its potential as an active listener and how it is situated in the campus-wide mental healthcare infrastructure. My work has been presented at CSCW and in workshops at CHI and CSCW.
 
