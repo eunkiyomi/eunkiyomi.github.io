@@ -9,3 +9,96 @@ body {
 figcaption {
     font-size: 14px;
 }
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.project-item:not(:first-child) {
+    border-top: 1px solid black;
+}
+
+.project-item {
+    width: 398px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0 0 0;
+}
+
+.project-description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+}
+
+.project-tags { // todo: flow down when it exceeds the parent's width. 
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+}
+
+.project-tag { // maybe div
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24.5px;
+    padding: 2.5px 8px; // vertical | horizontal
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.project-title { // maybe h3
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    margin: 0;
+}
+
+.project-oneline { // maybe p
+    font-size: 16px;
+    line-height: 28px;
+    margin: 0;
+}
+
+.project-time-link {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.project-time { // maybe p
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    margin: 0;
+}
+
+.project-links {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+}
+
+.project-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+}
+
+.project-link-icon { // maybe img
+    height: 17px;
+}
+
+.project-link-name { // maybe a
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+}

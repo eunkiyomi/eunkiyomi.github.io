@@ -1,0 +1,49 @@
+{%- assign projects = site.data.projects.entries -%}
+{%- if projects.size > 0 -%}
+  <div class="project-container">
+    {%- for project in projects -%}
+      <div class="project-item">
+        <!-- TODO: add alt texts in site.data.projects.entries -->
+        <img src="{{ project.img }}" alt="Image of {{ project.title }}"> 
+        <div class="project-description-container">
+          {%- if project.tags and project.tags.size > 0 -%}
+            <div class="project-tags">
+              {%- for tag in project.tags -%}
+                <div class="project-tag">#{{ tag }}</div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-oneline">{{ project.description }}</p>
+          <div class="project-time-link">
+            <p class="project-time">{{ project.time }}</p>
+            {%- if project.links.size > 0 -%}
+              <div class="project-links">
+                {%- for link in project.links -%}
+                  <div class="project-link">
+                    {%- case link.type -%}
+                      {%- when "code" %-}
+                        {%- assign link_icon = "/assets/icon/github.png" -%}
+                      {%- when "paper" -%}
+                        {%- assign link_icon = "/assets/icon/paper.png" -%}
+                      {%- when "video" -%}
+                        {%- assign link_icon = "/assets/icon/video.png" -%}
+                      {%- when "web" -%}
+                        {%- assign link_icon = "/assets/icon/web.png" -%}
+                      {%- else -%}
+                        {%- assign link_icon = "/assets/icon/web.png" -%}
+                    {%- endcase -%}
+                    <img class="project-link-icon" src="{{ link_icon }}">
+                    <a class="project-link-name" href="{{ link.href }}">{{ link.type }}</a>
+                  </div>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+{%- else -%}
+  No projects
+{%- endif -%}

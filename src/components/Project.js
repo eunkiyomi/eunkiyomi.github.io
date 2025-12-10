@@ -1,0 +1,58 @@
+import {useState} from 'react'
+import './components.css'
+import projectData from '../Data/projects.json' // todo: yaml
+import ProjectEntry from './projectEntry'
+import {ConfigProvider, Segmented} from 'antd';
+
+const customTheme = {
+    components: {
+        Segmented: {
+            colorBgBase: '#f5f5f5',
+            itemActiveBg: 'rgba(0, 0, 0, 0.15)',
+            itemHoverBg: 'rgba(0, 0, 0, 0.06)',
+            itemSelectedBg: '#92BCC6',
+            itemSelectedColor: '#ffffff',
+            itemColor: 'rgba(0, 0, 0, 0.88)',
+            itemHoverColor: 'rgba(0, 0, 0, 0.88)',
+            trackBg: '#f5f5f5',
+            trackPadding: 4,
+            itemSelectedScale: {
+                fontWeight: 800 // bold font when selected
+            }
+        }
+    }
+};
+
+export const Projects = (props) => {
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const handleCategoryChange = (value) => {
+        setSelectedCategory(value);
+    };
+    const filteredProjects = projectData.filter((project) => {
+        if (selectedCategory === 'All') {
+            return true;
+        }
+        return project.categories.includes(selectedCategory);
+    });
+    return (
+        <div className="w-full flex flex-col">
+            <div className="text-primary text-2xl font-extrabold mb-2">Projects</div>
+            <div className="text-base text-gray-500">
+                A selection of previous projects that I have either led or co-led, for research, coursework, and of course, for fun!
+            </div>
+            <ConfigProvider theme={customTheme}>
+                <Segmented 
+                    options={['All', 'System Building', 'Deep Learning', 'Data Analysis', 'Qualitative Method', 'Others']}
+                    onChange={handleCategoryChange}
+                    className='my-3 font-normal'
+                    size='large'
+                />
+            </ConfigProvider>
+            <div className="flex flex-col">
+                {filteredProjects.map((project) => (
+                    <ProjectEntry key={project.id} project={project} />
+                ))}
+            </div>
+        </div>
+    )
+}
