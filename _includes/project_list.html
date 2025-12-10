@@ -4,7 +4,9 @@
     {%- for project in projects -%}
       <div class="project-item">
         <!-- TODO: add alt texts in site.data.projects.entries -->
-        <img src="{{ project.img }}" alt="Image of {{ project.title }}"> 
+        <div class="project-img-container">
+          <img class="project-img" src="{{ project.img }}" alt="Image of {{ project.title }}"> 
+        </div>
         <div class="project-description-container">
           {%- if project.tags and project.tags.size > 0 -%}
             <div class="project-tags">
