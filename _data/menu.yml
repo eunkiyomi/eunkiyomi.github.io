@@ -11,6 +11,8 @@ entries:
         url: /2025/02/05/eunki-as-researcher.html
       - title: CV
         url: /assets/docs/Eunki_s_CV.pdf
+      - title: Projects
+        url: /projects
   - title: recent posts
     post_list:
       limit: 2
