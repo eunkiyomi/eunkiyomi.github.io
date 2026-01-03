@@ -67,7 +67,7 @@ entries:
     time: Jun 2021 ~ Feb 2024
   - title: Looking at the Relationship between Visually Impaired People and AI Upside Down
     img: /assets/img/project/behind-science.png
-    description:
+    description: Interviews with (1) a professor with visual impairment and (2) an entrepreneur running a startup for accessible online stores, suggesting implications for AI development 'with' people with disabilities.
     tags:
       - Interview
       - Marginalization
@@ -79,7 +79,7 @@ entries:
     time: Mar 2023 ~ Feb 2024
   - title: Fact Checker
     img: /assets/img/project/fact-checker.png
-    description:
+    description: BERT-based fake news detection system with a user interface for nudging critical thinking.
     tags:
       - Hi-fi Prototype
       - Term Paper
@@ -88,8 +88,8 @@ entries:
       - href: /assets/docs/23-aiethics-fake-news.pdf
         type: paper
   - title: Human Rights Library
-    img:
-    description:
+    img: /assets/img/project/hrc-library.png
+    description: An information system for renting and searching 200 books, used by a campus activist organization.
     tags: 
       - Real World Deployment
       - Working System
