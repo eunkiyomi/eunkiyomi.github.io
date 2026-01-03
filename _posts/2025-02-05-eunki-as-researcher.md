@@ -52,13 +52,13 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
 - [Ways of Seeing](https://en.wikipedia.org/wiki/Ways_of_Seeing), John Berger
   > Seeing is placemaking
 
-<!-- ## a short memo on programming
+## a short memo on programming
 
 As a ✨magic wand✨ making my imagination real and lego blocks I can arrange in a perfect order, programming languages have been my favorite toys since I was a child.
 
 But at the same time, I am opposed to the idea that programming languages, or moreover the computer science, are solely the ✨magic wand✨ that will solve all the problems without harm.
 
-My inquiries and troubles are situated in this tension. I believe the power of critical and creative designs to navigate this tension and make computers indeed magical. -->
+My inquiries and troubles are situated in this tension. I believe the power of critical and creative designs/writings to navigate this tension.
 
 ## good bye ...
 Or, check my [winter]({% link _posts/2025-02-09-winter.md %}).
