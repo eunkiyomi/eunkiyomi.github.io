@@ -22,7 +22,7 @@ body {
 
 I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computing.
 
-Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [a selected list of writings](https://linktr.ee/eunkiyomi).
+Please see my [CV](/assets/docs/Eunki_s_CV.pdf), [a selected list of writings](https://linktr.ee/eunkiyomi), and [projects](/projects).
 
 As a researcher, I am interested in the following broad questions:
 - Whose voices are invisible?
