@@ -7,9 +7,11 @@ entries:
       - Full Paper
       - Working System
       - Care
+    role: Technical development lead; Conversation design co-lead; Discussion about 'place' co-lead; Semi-structured interview co-lead
     links:
       - href: /assets/docs/25-cscw-rcc.pdf
         type: paper
+        label: CSCW'25
     time: Mar 2023 ~ Ongoing
   - title: 4 Emos
     img: /assets/img/project/4emos.png
@@ -18,18 +20,22 @@ entries:
       - Workshop Paper
       - Care
       - Marginalization
+    role: Wrote the whole manuscript based on my own experience.
     links:
       - href: /assets/docs/25-cscw-4emos.pdf
         type: paper
+        label: CSCW'25 (Workshop)
     time: Jul 2025 ~ Ongoing
   - title: LifePensieve
     img: /assets/img/project/lifepensieve.png
     tags:
       - Full Paper
       - Care
+    role: Participate in discussion; Support user study.
     links:
       - href: https://ic.kaist.ac.kr/publications/papers/koh2025harnessing.pdf
         type: paper
+        label: IMWUT'25
     time: Mar 2023 ~ Feb 2025
   - title: Care Fish
     img: /assets/img/project/care-fish.png
@@ -38,6 +44,7 @@ entries:
       - Awarded
       - Working System
       - Care
+    role: Team leader; I led needs-finding, system development, and user study. 
     time: Apr 2025 ~ Ongoing
   - title: Ways of Talking
     img: /assets/img/project/ways-of-talking.png
@@ -50,21 +57,21 @@ entries:
       - Term Paper
       - Care
       - Marginalization
+    role: Solo project
     time: Mar 2024 ~ Jun 2024
-  - title: Emoji Studies
-    img: /assets/img/project/shooting-star-emoji.png
-    description:
+  - title: MOJI
+    img: /assets/img/project/moji.png
+    description: Enhancing Emoji Search System with Query Expansions and Emoji Recommendations
     tags:
       - User Study
       - Poster
-      - Working System
       - Computer-Mediated Communication
     links:
       - href: /assets/docs/23-chi-moji.pdf
         type: paper
-      - href: /assets/docs/21-ksc-shooting-star.pdf
-        type: paper
-    time: Jun 2021 ~ Feb 2024
+        label: CHI EA'23
+    role: First idea suggestion; Backend development; User study (together)
+    time: Sep 2023 ~ Feb 2024
   - title: Looking at the Relationship between Visually Impaired People and AI Upside Down
     img: /assets/img/project/behind-science.png
     description: Interviews with (1) a professor with visual impairment and (2) an entrepreneur running a startup for accessible online stores, suggesting implications for AI development 'with' people with disabilities.
@@ -73,20 +80,12 @@ entries:
       - Marginalization
       - Magazine Article
       - Term Paper
+    role: Interview the entrepreneur; Write the "social impact" part.
     links:
       - href: /assets/docs/24-stp-disability-ai.pdf
         type: paper
+        label: Behind Sciences (Vol. 16)
     time: Mar 2023 ~ Feb 2024
-  - title: Fact Checker
-    img: /assets/img/project/fact-checker.png
-    description: BERT-based fake news detection system with a user interface for nudging critical thinking.
-    tags:
-      - Hi-fi Prototype
-      - Term Paper
-    time: Mar 2023 ~ Jun 2023
-    links:
-      - href: /assets/docs/23-aiethics-fake-news.pdf
-        type: paper
   - title: Human Rights Library
     img: /assets/img/project/hrc-library.png
     description: An information system for renting and searching 200 books, used by a campus activist organization.
@@ -94,7 +93,21 @@ entries:
       - Real World Deployment
       - Working System
       - Marginalization
-    time:
+    time: 2023
+    links:
+      - href: https://humanrights-library.vercel.app/
+        type: web
+  - title: Fact Checker
+    img: /assets/img/project/fact-checker.png
+    description: BERT-based fake news detection system with a user interface for nudging critical thinking.
+    tags:
+      - Hi-fi Prototype
+      - Term Paper
+    time: Mar 2023 ~ Jun 2023
+    role: Machine learning lead
+    links:
+      - href: /assets/docs/23-aiethics-fake-news.pdf
+        type: paper
   - title: Study Street
     img: /assets/img/project/study-street.png
     description: A virtual space supporting remote study
@@ -107,5 +120,16 @@ entries:
         type: code
       - href: https://youtu.be/fbMgzacFSn4
         type: video
-    time:
-      Aug 2021 ~ Dec 2021
+    time: Aug 2021 ~ Dec 2021
+  - title: Shooting Star Emoji
+    img: /assets/img/project/shooting-star-emoji.png
+    description:
+    tags:
+      - Poster
+      - Working System
+      - Computer-Mediated Communication
+    links:
+      - href: /assets/docs/21-ksc-shooting-star.pdf
+        type: KSC'21
+    role: First author; Did design, implementation, and writing.
+    time: Jun 2021 ~ Dec 2021

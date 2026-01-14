@@ -3,7 +3,6 @@
   <div class="project-container">
     {%- for project in projects -%}
       <div class="project-item">
-        <!-- TODO: add alt texts in site.data.projects.entries -->
         <div class="project-img-container">
           <img class="project-img" src="{{ project.img }}" alt="Image of {{ project.title }}"> 
         </div>
@@ -17,6 +16,12 @@
           {%- endif -%}
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-oneline">{{ project.description }}</p>
+          {%- if project.role -%}
+            <div class="project-role-wrapper">
+              <span class="project-role-label">My role</span>
+              <span class="project-role-text">{{ project.role }}</span>
+            </div>
+          {%- endif -%}
           <div class="project-time-link">
             <p class="project-time">{{ project.time }}</p>
             {%- if project.links.size > 0 -%}
@@ -36,7 +41,7 @@
                         {%- assign link_icon = "/assets/icon/web.png" -%}
                     {%- endcase -%}
                     <img class="project-link-icon" src="{{ link_icon }}">
-                    <a class="project-link-name" href="{{ link.href }}">{{ link.type }}</a>
+                    <a class="project-link-name" href="{{ link.href }}">{% if link.label %}{{ link.label }}{% else %}{{ link.type }}{% endif %}</a>
                   </div>
                 {%- endfor -%}
               </div>

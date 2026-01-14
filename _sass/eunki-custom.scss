@@ -85,14 +85,44 @@ figcaption {
 
 .project-oneline { // maybe p
     font-size: 16px;
-    line-height: 28px;
+    line-height: 22px; /* Reduced from 28px */
     margin: 0;
+}
+
+.project-role-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align to top in case of wrapping */
+    gap: 8px;
+    margin: 0;
+}
+
+.project-role-label {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 2px 6px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-top: 1px; /* Slight visual alignment fix */
+}
+
+.project-role-text {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    overflow-wrap: break-word; 
+    word-break: break-word;
 }
 
 .project-time-link {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    flex-wrap: wrap;
+    column-gap: 24px;
+    row-gap: 0px;
 }
 
 .project-time { // maybe p
