@@ -98,9 +98,6 @@ entries:
       - Working System
       - Marginalization
     time: 2023
-    links:
-      - href: https://humanrights-library.vercel.app/
-        type: web
   - title: Fact Checker
     img: /assets/img/project/fact-checker.png
     description: BERT-based fake news detection system with a user interface for nudging critical thinking.
