@@ -1,4 +1,17 @@
 entries:
+  - title: Care Fish
+    img: /assets/img/project/care-fish.png
+    description: An LLM-based tool to facilitate case work for social service
+    tags:
+      - Awarded
+      - Working System
+      - Care
+    role: Team leader, First author
+    time: Apr 2025 ~ Ongoing
+    links:
+      - href: https://openreview.net/forum?id=i9LSnW2F8o
+        type: paper
+        label: ICML2026 AI4GOOD Workshop
   - title: Cumpa, a Listening Robot
     img: /assets/img/cumpa.png
     description: Place-making and conversation design for a counseling robot.
@@ -37,15 +50,6 @@ entries:
         type: paper
         label: IMWUT'25
     time: Mar 2023 ~ Feb 2025
-  - title: Care Fish
-    img: /assets/img/project/care-fish.png
-    description: An LLM-based tool to facilitate case work for social service
-    tags:
-      - Awarded
-      - Working System
-      - Care
-    role: Team leader; I led needs-finding, system development, and user study. 
-    time: Apr 2025 ~ Ongoing
   - title: Ways of Talking
     img: /assets/img/project/ways-of-talking.png
     description: A critique of the personas of care-giving computers
