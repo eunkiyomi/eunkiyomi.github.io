@@ -9,9 +9,9 @@ entries:
     role: Team leader, First author
     time: Apr 2025 ~ Ongoing
     links:
-      - href: https://openreview.net/forum?id=i9LSnW2F8o
+      - href: /assets/docs/26-cscw-poster-care-fish.pdf
         type: paper
-        label: ICML2026 AI4GOOD Workshop
+        label: CSCW'26 Poster (to appear)
   - title: Cumpa, a Listening Robot
     img: /assets/img/cumpa.png
     description: Place-making and conversation design for a counseling robot.
