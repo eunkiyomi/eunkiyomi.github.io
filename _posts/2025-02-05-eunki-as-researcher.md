@@ -11,14 +11,24 @@ body {
   /* font-family: serif;
   font-size: 1.2em; */
 }
+.callout {
+  border: thin solid currentColor;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.callout p { margin: 0; }
 </style>
 
 [![Profile](/assets/img/daisy.jpeg){: style="width: 300px; height: auto; display: inline-block; margin-right: 20px;"}](https://www.youtube.com/watch?v=x-sNrLXFerk)
 ![Portrait](/assets/img/portrait.jpg){: style="width: 300px; height: auto; display: inline-block;"}
 
+<div class="callout" markdown="1">
+📣 **I am applying for PhD programs (Fall 2027).**
+</div>
+
 # hi, i am
 
-**Eunki Joung**. I am a prospective PhD student in Human-Computer Interaction (HCI), Computer-Supported Cooperative Work (CSCW), and Science and Technology Studies (STS). 
+**Eunki Joung**. I am a researcher working across Human-Computer Interaction (HCI), Computer-Supported Cooperative Work (CSCW), and Science and Technology Studies (STS). 
 
 I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computing.
 
