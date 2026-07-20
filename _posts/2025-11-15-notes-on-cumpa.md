@@ -26,7 +26,7 @@ figcaption {
 
 <figure>
     <img src="/assets/img/cumpa.png">
-    <figcaption>Figure: Editted by Eunki. The drawing of Cumpa is the work of Sohwi Son. The scene of an old man and a dog is a still shot of TV drama [Dog Sound] (KBS, 2024).</figcaption>
+    <figcaption>Figure: Edited by Eunki. The drawing of Cumpa is the work of Sohwi Son. The scene of an old man and a dog is a still shot of TV drama [Dog Sound] (KBS, 2024).</figcaption>
 </figure>
 
 ### A Story of Sophie and Lee[^sophie]
@@ -39,7 +39,7 @@ How does he know it? Actually, Sophie, the dog, is the one who first knew it and
 
 No one had expected that Lee would find the truth, since he is an old man with dementia. He is cruel and nasty and sometimes even pees himself, so he has been ignored by everyone. However, he is the only person who listened to the testimony of Sophie, finding the truth that all other people could not find.
 
-This is a story of *listening*, where what Sophie said hasn't been heard by every other people but has been recognized by Lee, who's been similarly ignored by others. This is a story of *solidarity*, where the voiceless beings are connected to each other through listening. 
+This is a story of *listening*, where what Sophie said hasn't been heard by all other people but has been recognized by Lee, who's been similarly ignored by others. This is a story of *solidarity*, where the voiceless beings are connected to each other through listening. 
 
 ### A Story of Cumpa
 

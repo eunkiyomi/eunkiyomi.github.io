@@ -45,7 +45,7 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
 
 [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore.
 
-## some readings that have influenced my reseach journey (not exclusive)
+## some readings that have influenced my research journey (not exclusive)
 
 - [Stigma: Notes on the Management of Spoiled Identity](https://en.wikipedia.org/wiki/Stigma:_Notes_on_the_Management_of_Spoiled_Identity), Erving Goffman 
   > Marginalization embedded in social interactions
@@ -56,7 +56,7 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
 - [The Social Life of Small Urban Spaces](https://en.wikipedia.org/wiki/The_Social_Life_of_Small_Urban_Spaces), William H. Whyte
   > How placemaking can enact alternative social interactions
 - [When Species Meet](https://www.upress.umn.edu/9780816650460/when-species-meet/), Donna J. Haraway
-  > Cum panis, or the multispeices (humans, robots, and other critters) who care each other
+  > Cum panis, or the multispecies (humans, robots, and other critters) who care for each other
 - [Momo](https://en.wikipedia.org/wiki/Momo_(novel)), Michael Ende
   > Listening and alternative temporalities ([my note]({% link _posts/2025-09-25-grandma.md %}))
 - [Ways of Seeing](https://en.wikipedia.org/wiki/Ways_of_Seeing), John Berger
