@@ -19,7 +19,7 @@ body {
 .callout p { margin: 0; }
 </style>
 
-[![Profile](/assets/img/daisy.jpeg){: style="width: 315px; height: 315px; object-fit: cover; display: inline-block;"}](https://www.youtube.com/watch?v=x-sNrLXFerk)
+![Profile](/assets/img/daisy.jpeg){: style="width: 315px; height: 315px; object-fit: cover; display: inline-block;"}
 ![Portrait](/assets/img/portrait.jpg){: style="width: 315px; height: 315px; object-fit: cover; object-position: center 3%; display: inline-block;"}
 
 <div class="callout" markdown="1">
