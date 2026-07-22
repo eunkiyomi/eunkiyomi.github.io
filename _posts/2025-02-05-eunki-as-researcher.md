@@ -2,6 +2,7 @@
 layout: post
 title: Eunki as a Researcher
 redirect_from: "/research/"
+hide_date: true
 authors:
 - eunki
 ---
