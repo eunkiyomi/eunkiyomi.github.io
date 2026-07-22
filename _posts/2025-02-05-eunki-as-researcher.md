@@ -19,8 +19,8 @@ body {
 .callout p { margin: 0; }
 </style>
 
-[![Profile](/assets/img/daisy.jpeg){: style="width: 300px; height: auto; display: inline-block; margin-right: 20px;"}](https://www.youtube.com/watch?v=x-sNrLXFerk)
-![Portrait](/assets/img/portrait.jpg){: style="width: 300px; height: auto; display: inline-block;"}
+[![Profile](/assets/img/daisy.jpeg){: style="width: 315px; height: 315px; object-fit: cover; display: inline-block;"}](https://www.youtube.com/watch?v=x-sNrLXFerk)
+![Portrait](/assets/img/portrait.jpg){: style="width: 315px; height: 315px; object-fit: cover; object-position: center 3%; display: inline-block;"}
 
 <div class="callout" markdown="1">
 📣 **I am applying for PhD programs (Fall 2027).**
