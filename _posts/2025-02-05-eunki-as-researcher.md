@@ -35,7 +35,7 @@ I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.
 
 Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [projects](/projects).
 
-My research aims to understand existing and build new sociotechnical systems for formal and informal care work in institutions. I am interested in the following broad questions:
+My research aims to understand existing and build new sociotechnical systems for formal and informal care work in organizations. I am interested in the following broad questions:
 - Whose voices are invisible?
 - How are the existing sociotechnical systems configured with such invisibility?
 - What should those sociotechnical systems look like?
