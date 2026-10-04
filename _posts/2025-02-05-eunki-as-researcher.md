@@ -23,30 +23,33 @@ body {
 ![Profile](/assets/img/daisy.jpeg){: style="width: 315px; height: 315px; object-fit: cover; display: inline-block;"}
 ![Portrait](/assets/img/portrait.jpg){: style="width: 315px; height: 315px; object-fit: cover; object-position: center 3%; display: inline-block;"}
 
-<div class="callout" markdown="1">
+<!-- <div class="callout" markdown="1">
 📣 **I am applying for PhD programs (Fall 2027).**
-</div>
+</div> -->
 
-# hi, i am
+# Hi, I am
 
-**Eunki Joung**. I am a researcher working across Human-Computer Interaction (HCI), Computer-Supported Cooperative Work (CSCW), and Science and Technology Studies (STS). 
+**Eunki Joung**. I am a researcher working across Human-Computer Interaction (HCI), Computer-Supported Cooperative Work (CSCW), and Science and Technology Studies (STS). I've recently completed my mandatory military service (Sep 2026), and am now applying for PhD programs (Fall 2027).
 
-I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computing.
+I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computer Science. 
 
 Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [projects](/projects).
 
-As a researcher, I am interested in the following broad questions:
+My research aims to understand existing and build new sociotechnical systems for formal and informal care work in institutions. I am interested in the following broad questions:
 - Whose voices are invisible?
-- How can we bring those invisible voices to public spheres[^public-spheres]?
-- What should those public spheres look like?
+- How are the existing sociotechnical systems configured with such invisibility?
+- What should those sociotechnical systems look like?
 
-I've designed and studied [Cumpa]({% link _posts/2025-11-15-notes-on-cumpa.md %}), a counseling robot, discussing its potential as an active listener and how it is situated in the campus-wide mental healthcare infrastructure. My work has been presented at CSCW and in workshops at CHI and CSCW.
+I critically studied [Care Fish](/assets/docs/26-cscw-poster-care-fish.pdf), a technology probe of an AI scribe for social work document automation, discussing how it may reinforce an epistemic hierarchy that undervalues street-level discretion. 
+I designed and studied [Robotic Counseling Center](/assets/docs/25-cscw-rcc.pdf), a dedicated room with a counseling robot, discussing its potential as an active listener and how it is situated in the campus-wide mental healthcare infrastructure. 
+
+My work has been presented at CSCW and in workshops at CHI and CSCW.
 
 I served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor at KAIST.
 
-[^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore.
+<!-- [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore. -->
 
-## some readings that have influenced my research journey (not exclusive)
+## Some readings that have influenced my research journey (not exclusive)
 
 - [Stigma: Notes on the Management of Spoiled Identity](https://en.wikipedia.org/wiki/Stigma:_Notes_on_the_Management_of_Spoiled_Identity), Erving Goffman 
   > Marginalization embedded in social interactions
@@ -63,7 +66,7 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
 - [Ways of Seeing](https://en.wikipedia.org/wiki/Ways_of_Seeing), John Berger
   > Seeing is placemaking
 
-## a short memo on programming
+<!-- ## a short memo on programming
 
 As a ✨magic wand✨ making my imagination real and lego blocks I can arrange in a perfect order, programming languages have been my favorite toys since I was a child.
 
@@ -72,7 +75,7 @@ But at the same time, I am opposed to the idea that programming languages, or mo
 My inquiries and troubles are situated in this tension. I believe the power of critical and creative designs/writings to navigate this tension.
 
 ## good bye ...
-Or, check my [winter]({% link _posts/2025-02-09-winter.md %}).
+Or, check my [winter]({% link _posts/2025-02-09-winter.md %}). -->
 
 <!-- 
 ## experiences and fondness
