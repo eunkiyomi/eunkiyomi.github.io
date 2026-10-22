@@ -55,14 +55,25 @@ goat_counter: eunkisalon
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  # Jekyll defaults, listed so they stay excluded
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  # GitHub Pages excludes this by default, but only when exclude is not set
+  - CNAME
+  # Development files (React source, webpack build setup)
+  - src/
+  - webpack.config.js
+  - package.json
+  - package-lock.json
+  - README.markdown
+  # Images kept for reference but not used on the site
+  - assets/img/unused/
