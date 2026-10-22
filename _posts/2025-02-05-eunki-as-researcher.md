@@ -3,6 +3,7 @@ layout: post
 title: Eunki as a Researcher
 redirect_from: "/research/"
 hide_date: true
+hide_authors: true
 authors:
 - eunki
 ---
@@ -18,10 +19,26 @@ body {
   margin-bottom: 1.5rem;
 }
 .callout p { margin: 0; }
+.portrait {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 0;
+}
+.portrait img {
+  width: 315px;
+  height: 315px;
+  object-fit: cover;
+  object-position: center 3%;
+}
+.portrait figcaption { flex: 1 1 10rem; }
 </style>
 
-![Profile](/assets/img/daisy.jpeg){: style="width: 315px; height: 315px; object-fit: cover; display: inline-block;"}
-![Portrait](/assets/img/portrait.jpg){: style="width: 315px; height: 315px; object-fit: cover; object-position: center 3%; display: inline-block;"}
+<figure class="portrait">
+  <img src="/assets/img/portrait.png" alt="Eunki smiling, wearing glasses and a striped sweater over a collared shirt, against a plain cream wall">
+  <figcaption aria-hidden="true">Eunki smiling, wearing glasses and a striped sweater over a collared shirt, against a plain cream wall</figcaption>
+</figure>
 
 <!-- <div class="callout" markdown="1">
 📣 **I am applying for PhD programs (Fall 2027).**
