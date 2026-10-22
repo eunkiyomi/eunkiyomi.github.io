@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+![Daisy](/assets/img/daisy.jpeg){: style="width: 315px; height: 315px; object-fit: cover;"}
