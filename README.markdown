@@ -7,14 +7,13 @@ A [Jekyll](https://jekyllrb.com/) site hosted on GitHub Pages, using the
 
 ## Install
 
-You need Ruby and Bundler. Use a Ruby version that GitHub Pages supports
-(3.3 is a safe choice). Ruby 4.x can't install the `github-pages` gem set.
+You need Ruby and Bundler. This repo pins Ruby 3.3.6 in `.ruby-version`.
+Ruby 4.x can't install the `github-pages` gem set.
 
 ```sh
-# Install Ruby 3.3 with rbenv (Homebrew on macOS)
+# Install Ruby 3.3.6 with rbenv (Homebrew on macOS)
 brew install rbenv ruby-build
-rbenv install 3.3.6
-rbenv local 3.3.6        # writes .ruby-version in this folder
+rbenv install            # installs the version in .ruby-version
 
 # Let rbenv pick the Ruby version in your shell, then open a new terminal
 echo 'eval "$(rbenv init - zsh)"' >> ~/.zshrc
