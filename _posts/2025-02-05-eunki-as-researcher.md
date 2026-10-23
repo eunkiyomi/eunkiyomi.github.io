@@ -46,9 +46,9 @@ body {
 
 # Hi, I am
 
-**Eunki Joung**. I am a researcher working across Human-Computer Interaction (HCI) and Computer-Supported Cooperative Work (CSCW). I've recently completed my mandatory military service (Sep 2026), and am now applying for PhD programs (Fall 2027).
+**Eunki Joung**. I am a researcher working across Human-Computer Interaction (HCI) and Computer-Supported Cooperative Work (CSCW). 
 
-I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computer Science. 
+I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computer Science. I am now applying for PhD programs (Fall 2027).
 
 Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [projects](/projects).
 
@@ -66,7 +66,7 @@ I served on the Student & Minority Human Rights Committee of the Undergraduate S
 
 <!-- [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore. -->
 
-## Some readings that have influenced my research journey (not exclusive)
+## Some readings that have influenced my research journey
 
 - [Stigma: Notes on the Management of Spoiled Identity](https://en.wikipedia.org/wiki/Stigma:_Notes_on_the_Management_of_Spoiled_Identity), Erving Goffman 
   > Marginalization embedded in social interactions
