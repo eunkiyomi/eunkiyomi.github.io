@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Eunki as a Researcher
-redirect_from: "/research/"
+permalink: /research/
+redirect_from: /2025/02/05/eunki-as-researcher.html
 hide_date: true
 hide_authors: true
 authors:
