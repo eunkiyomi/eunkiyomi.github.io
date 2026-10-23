@@ -46,7 +46,7 @@ body {
 
 # Hi, I am
 
-**Eunki Joung**. I am a researcher working across Human-Computer Interaction (HCI), Computer-Supported Cooperative Work (CSCW), and Science and Technology Studies (STS). I've recently completed my mandatory military service (Sep 2026), and am now applying for PhD programs (Fall 2027).
+**Eunki Joung**. I am a researcher working across Human-Computer Interaction (HCI) and Computer-Supported Cooperative Work (CSCW). I've recently completed my mandatory military service (Sep 2026), and am now applying for PhD programs (Fall 2027).
 
 I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.kaist.ac.kr), KAIST, where I received an M.S. and B.S. in Computer Science. 
 
@@ -60,7 +60,7 @@ My research aims to understand existing and build new sociotechnical systems for
 I critically studied [Care Fish](/assets/docs/26-cscw-poster-care-fish.pdf), a technology probe of an AI scribe for social work document automation, discussing how it may reinforce an epistemic hierarchy that undervalues street-level discretion. 
 I designed and studied [Robotic Counseling Center](/assets/docs/25-cscw-rcc.pdf), a dedicated room with a counseling robot, discussing its potential as an active listener and how it is situated in the campus-wide mental healthcare infrastructure. 
 
-My work has been presented at CSCW and in workshops at CHI and CSCW.
+My work has been presented at ACM CSCW and in workshops at ACM CHI and ACM CSCW.
 
 I served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor at KAIST.
 
