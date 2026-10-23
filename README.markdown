@@ -16,16 +16,21 @@ brew install rbenv ruby-build
 rbenv install 3.3.6
 rbenv local 3.3.6        # writes .ruby-version in this folder
 
+# Let rbenv pick the Ruby version in your shell, then open a new terminal
+echo 'eval "$(rbenv init - zsh)"' >> ~/.zshrc
+
 # Install the gems
-gem install bundler
 bundle install
 ```
 
-If Bundler says your platform isn't in the lockfile, add it and install again:
+Check with `ruby -v` that you're on 3.3 before running `bundle install`. If
+it still says 4.x, your shell isn't using rbenv yet.
+
+If you have a `Gemfile.lock` from an older setup and Jekyll crashes with
+``undefined method `[]' for nil`` in `logger.rb`, update the gems:
 
 ```sh
-bundle lock --add-platform "$(ruby -e 'print Gem::Platform.local')"
-bundle install
+bundle update github-pages
 ```
 
 ## Run locally
