@@ -55,7 +55,7 @@ Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [projects](/projects).
 My research aims to understand existing and build new sociotechnical systems for formal and informal care practices. I am interested in the following broad questions:
 - Whose voices are invisible?
 - How are the existing sociotechnical systems configured with such invisibility?
-- What should those sociotechnical systems look like?
+- What should those sociotechnical systems look like, and how can we build them?
 
 I critically studied [Care Fish](/assets/docs/26-cscw-poster-care-fish.pdf), a technology probe of an AI scribe for social work document automation, discussing how it may reinforce an epistemic hierarchy that undervalues street-level discretion. 
 I designed and studied [Robotic Counseling Center](/assets/docs/25-cscw-rcc.pdf), a dedicated room with a counseling robot, discussing its potential as an active listener and how it is situated in the campus-wide mental healthcare infrastructure. 
