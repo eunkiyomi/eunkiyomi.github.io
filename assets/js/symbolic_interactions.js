@@ -259,6 +259,8 @@ class GreetingView {
   constructor() {
     this.messageBox = document.getElementById('messageBox');
     this.boxes = Array.from(this.messageBox.querySelectorAll('.box'));
+    // Picked once per page load, so the wall is laid out anew on each visit.
+    this.layoutSeed = Math.floor(Math.random() * 2147483646);
     this.nicknameInput = document.getElementById('nicknameInput');
 
     this.customGreetingDiv = document.getElementById('customGreetingDiv');
@@ -309,10 +311,11 @@ class GreetingView {
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
   }
 
-  // Scatters greetings over the boxes in the same order every time for a given
-  // page, so the wall does not rearrange itself when a greeting is hidden.
+  // Scatters greetings over the boxes in a new order on each visit, but keeps
+  // that order for a given page while the visitor stays, so the wall does not
+  // rearrange itself when a greeting is sent or hidden.
   _boxesFor(page) {
-    let seed = page + 1;
+    let seed = (this.layoutSeed + page) % 2147483646 + 1;
     const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
     const boxes = this.boxes.slice();
     for (let i = boxes.length - 1; i > 0; i--) {
@@ -388,7 +391,7 @@ class GreetingView {
     });
 
     // Update the page label
-    let label = `Page ${model.currentPage + 1} of ${model.totalPages()} · newest first`;
+    let label = `Page ${model.currentPage + 1} of ${model.totalPages()}`;
     const hidden = model.greetings.filter(g => g.hidden).length;
     if (model.admin && hidden) label += ` · ${hidden} hidden`;
     this.pageLabel.textContent = label;
