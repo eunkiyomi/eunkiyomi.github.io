@@ -25,9 +25,9 @@ authors:
 .stage { background: var(--bg); }
 .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .2s; }
 .stage canvas.ready { opacity: 1; }
-.sun { position: absolute; left: 0; top: 0; width: 64px; height: 64px; margin: -32px 0 0 -32px; pointer-events: none; will-change: transform; }
+.sun { position: absolute; left: 0; top: 0; width: 112px; height: 112px; margin: -56px 0 0 -56px; pointer-events: none; will-change: transform; }
 .sun .rays, .sun .disc { transform-origin: 40px 40px; transition: transform .35s cubic-bezier(.3, 1.6, .5, 1), opacity .2s; }
-.sun .disc { fill: var(--ink); stroke: var(--ink); transform: scale(.27); }
+.sun .disc { fill: var(--ink); stroke: var(--ink); transform: scale(.16); }
 .sun .rays { stroke: var(--ink); opacity: 0; transform: scale(.4) rotate(-30deg); }
 .sun.on .disc { fill: var(--sun); transform: scale(1); }
 .sun.on .rays { opacity: 1; transform: scale(1) rotate(0deg); }
@@ -49,8 +49,8 @@ authors:
   <div class="stage" id="stage" aria-label="A ghost frozen in a block of ice. Press and hold to turn the dot into a sun, then move it near the ice to melt it.">
     <canvas id="canvas"></canvas>
     <svg class="sun" id="sun" viewBox="0 0 80 80" aria-hidden="true">
-      <circle class="disc" cx="40" cy="40" r="22" stroke-width="3"/>
-      <path class="rays" d="M71 40H79M61.9 61.9L67.6 67.6M40 71V79M18.1 61.9L12.4 67.6M9 40H1M18.1 18.1L12.4 12.4M40 9V1M61.9 18.1L67.6 12.4" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle class="disc" cx="40" cy="40" r="22" stroke-width="1.7"/>
+      <path class="rays" d="M71 40H79M61.9 61.9L67.6 67.6M40 71V79M18.1 61.9L12.4 67.6M9 40H1M18.1 18.1L12.4 12.4M40 9V1M61.9 18.1L67.6 12.4" stroke-width="1.7" stroke-linecap="round" fill="none"/>
     </svg>
     <div class="hint" id="hint">press and hold to turn the dot into a sun</div>
   </div>
