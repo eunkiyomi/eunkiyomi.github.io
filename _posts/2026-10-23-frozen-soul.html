@@ -1,0 +1,518 @@
+---
+layout: post
+title: A Frozen Soul and Sun
+authors:
+- eunki
+---
+
+<style>
+.frozen-soul {
+  --bg: #ffffff;
+  --ink: #000000;
+  --muted: #6b6b6b;
+  --rule: currentColor;
+  --sun: #ffd43b;
+  --link: #0000ee;
+  --mono: "Source Code Pro", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+.frozen-soul { display: flex; flex-direction: column; gap: 14px; max-width: 560px; }
+.stage {
+  position: relative; width: 100%; max-width: 100%; aspect-ratio: 1 / 1;
+  border: 1px solid var(--ink); overflow: hidden; touch-action: none; cursor: none;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+}
+.stage { background: var(--bg); }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .2s; }
+.stage canvas.ready { opacity: 1; }
+.sun { position: absolute; left: 0; top: 0; width: 64px; height: 64px; margin: -32px 0 0 -32px; pointer-events: none; will-change: transform; }
+.sun .rays, .sun .disc { transform-origin: 40px 40px; transition: transform .35s cubic-bezier(.3, 1.6, .5, 1), opacity .2s; }
+.sun .disc { fill: var(--ink); stroke: var(--ink); transform: scale(.27); }
+.sun .rays { stroke: var(--ink); opacity: 0; transform: scale(.4) rotate(-30deg); }
+.sun.on .disc { fill: var(--sun); transform: scale(1); }
+.sun.on .rays { opacity: 1; transform: scale(1) rotate(0deg); }
+@media (prefers-reduced-motion: reduce) { .sun .rays, .sun .disc { transition: none; } }
+.hint { position: absolute; left: 12px; top: 10px; font-size: 13px; color: var(--muted); pointer-events: none; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; }
+.status { font-variant-numeric: tabular-nums; }
+.status b { font-weight: 700; }
+.frozen-soul button {
+  font: inherit; color: inherit; background: transparent; border: 1px solid var(--rule);
+  border-radius: 2px; padding: 2px 10px; cursor: pointer;
+}
+.frozen-soul button:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+.frozen-soul button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.how summary { cursor: pointer; list-style: none; }
+.how summary::-webkit-details-marker { display: none; }
+.how summary::before { content: "▸ "; }
+.how[open] summary::before { content: "▾ "; }
+.how summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.how ul { margin: 6px 0 0; padding-left: 36px; list-style: circle; }
+.frozen-soul li { min-width: 0; }
+.frozen-soul .fallback { padding: 24px; }
+</style>
+
+<div class="frozen-soul">
+  <div class="stage" id="stage" aria-label="A ghost frozen in a block of ice. Press and hold to turn the dot into a sun, then move it near the ice to melt it.">
+    <canvas id="canvas"></canvas>
+    <svg class="sun" id="sun" viewBox="0 0 80 80" aria-hidden="true">
+      <circle class="disc" cx="40" cy="40" r="22" stroke-width="3"/>
+      <path class="rays" d="M71 40H79M61.9 61.9L67.6 67.6M40 71V79M18.1 61.9L12.4 67.6M9 40H1M18.1 18.1L12.4 12.4M40 9V1M61.9 18.1L67.6 12.4" stroke-width="3" stroke-linecap="round" fill="none"/>
+    </svg>
+    <div class="hint" id="hint">press and hold to turn the dot into a sun</div>
+  </div>
+
+  <div class="bar">
+    <span class="status" id="status">ice <b>100%</b> · frozen</span>
+    <button type="button" id="reset">Refreeze</button>
+  </div>
+
+  <details class="how">
+    <summary>how it works</summary>
+      <ul>
+        <li>A small dot follows your cursor. While you hold the mouse button down (or keep a finger on the box), it is a sun; let go and it is a dot again.</li>
+        <li>Ice melts where the sun is close, so the side facing the sun goes first. Move around to free the soul.</li>
+        <li>Once it starts to melt, the ice keeps dripping and melting on its own, just more slowly.</li>
+        <li>Drops fall from the melting ice and the puddle grows.</li>
+        <li>When the ice is gone, the soul is free to wander around the box.</li>
+      </ul>
+  </details>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(() => {
+  const stage = document.getElementById("stage");
+  const canvas = document.getElementById("canvas");
+  const sunEl = document.getElementById("sun");
+  const hint = document.getElementById("hint");
+  const statusEl = document.getElementById("status");
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!window.THREE) { stage.innerHTML = '<p class="fallback">The 3D scene could not load. Check your connection and reload.</p>'; return; }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false }); }
+  catch (e) { stage.innerHTML = '<p class="fallback">This browser has WebGL turned off, so the scene can\'t run.</p>'; return; }
+
+  // ---------- theme ----------
+  const theme = { bg: new THREE.Color(), ink: new THREE.Color() };
+  function readTheme() {
+    const cs = getComputedStyle(stage);
+    theme.bg.set(cs.getPropertyValue("--bg").trim() || "#ffffff");
+    theme.ink.set(cs.getPropertyValue("--ink").trim() || "#000000");
+    fillMat.color.copy(theme.bg); inkMat.color.copy(theme.ink);
+  }
+
+  // ---------- scene ----------
+  const scene = new THREE.Scene();
+  const AZ = 0.62, EL = 0.5, DIST = 10;
+  const camera = new THREE.OrthographicCamera(-2, 2, 2, -2, 0.1, 30);
+  camera.position.set(Math.sin(AZ) * Math.cos(EL) * DIST, Math.sin(EL) * DIST + 0.35, Math.cos(AZ) * Math.cos(EL) * DIST);
+  camera.lookAt(0, 0.35, 0);
+
+  const L_OUTLINE = 1, L_COLOR = 3;
+  const fillMat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
+  const inkMat = new THREE.MeshBasicMaterial();
+  const onLayers = (obj, ...layers) => { obj.layers.disableAll(); layers.forEach(l => obj.layers.enable(l)); return obj; };
+
+  // Ghost: open cylinder with a wavy hem plus a dome, a little flattened front-to-back like the drawing.
+  const R = 0.62, BOTTOM = -0.62, TOP = 0.42;
+  const ghost = new THREE.Group();
+  ghost.rotation.y = AZ;
+  scene.add(ghost);
+  const bodyGeo = new THREE.CylinderGeometry(R, R, TOP - BOTTOM, 96, 6, true);
+  bodyGeo.translate(0, (TOP + BOTTOM) / 2, 0);
+  const hemIdx = [], hemTheta = [];
+  {
+    const p = bodyGeo.attributes.position;
+    for (let i = 0; i < p.count; i++) if (Math.abs(p.getY(i) - BOTTOM) < 1e-4) { hemIdx.push(i); hemTheta.push(Math.atan2(p.getX(i), p.getZ(i))); }
+  }
+  function setHem(phase) {
+    const p = bodyGeo.attributes.position;
+    hemIdx.forEach((i, k) => p.setY(i, BOTTOM + 0.07 * Math.sin(hemTheta[k] * 7 + phase)));
+    p.needsUpdate = true; bodyGeo.computeVertexNormals();
+  }
+  setHem(0);
+  const body = onLayers(new THREE.Mesh(bodyGeo, fillMat), L_OUTLINE, L_COLOR);
+  const dome = onLayers(new THREE.Mesh(new THREE.SphereGeometry(R, 96, 32, 0, Math.PI * 2, 0, Math.PI / 2), fillMat), L_OUTLINE, L_COLOR);
+  dome.position.y = TOP;
+  const soul = new THREE.Group();
+  soul.scale.z = 0.8;
+  soul.add(body, dome);
+  ghost.add(soul);
+
+  // Face (drawn in ink only, no outline): eyes and mouth swap shape with the melt.
+  const face = new THREE.Group();
+  face.position.set(0, 0, R * 0.8 + 0.012);
+  ghost.add(face);
+  const ink = geo => onLayers(new THREE.Mesh(geo, inkMat), L_COLOR);
+  const eyeGeo = new THREE.SphereGeometry(1, 20, 12);
+  const eyes = [-0.17, 0.17].map(x => { const m = ink(eyeGeo); m.position.set(x, 0.42, 0); face.add(m); return m; });
+  const lids = [-0.17, 0.17].map(x => { const m = ink(new THREE.BoxGeometry(0.15, 0.028, 0.02)); m.position.set(x, 0.42, 0); face.add(m); return m; });
+  const happy = [-0.17, 0.17].map(x => { const m = ink(new THREE.TorusGeometry(0.07, 0.016, 8, 24, Math.PI)); m.position.set(x, 0.39, 0); face.add(m); return m; });
+  const mouthO = ink(new THREE.TorusGeometry(0.05, 0.015, 8, 24)); mouthO.position.set(0, 0.12, 0); mouthO.scale.y = 1.25; face.add(mouthO);
+  const mouthFlat = ink(new THREE.BoxGeometry(0.09, 0.026, 0.02)); mouthFlat.position.set(0, 0.12, 0); face.add(mouthFlat);
+  const mouthSmile = ink(new THREE.TorusGeometry(0.07, 0.016, 8, 24, Math.PI)); mouthSmile.position.set(0, 0.16, 0); mouthSmile.rotation.z = Math.PI; face.add(mouthSmile);
+  function setFace(kind) {
+    // Eyes and mouth stay ovals once awake, free included.
+    const open = { small: 0.07, open: 0.1, wide: 0.12, happy: 0.11 }[kind] || 0;
+    eyes.forEach(e => { e.visible = open > 0; e.scale.set(0.05, open, 0.02); });
+    lids.forEach(l => l.visible = kind === "asleep");
+    happy.forEach(h => h.visible = false);
+    mouthO.visible = open > 0; mouthFlat.visible = kind === "asleep"; mouthSmile.visible = false;
+  }
+
+  // Puddle on the ground; it grows as drops land.
+  const puddle = onLayers(new THREE.Mesh(new THREE.CircleGeometry(1, 64), fillMat), L_OUTLINE, L_COLOR);
+  puddle.rotation.x = -Math.PI / 2; puddle.position.y = BOTTOM - 0.11; puddle.scale.set(0.001, 0.001, 1);
+  scene.add(puddle);
+
+  // Ice: a box described as a signed distance field. Wherever the sun lingers, a sphere is carved out of it;
+  // the spheres grow while the sun stays close, so the side facing the sun melts first.
+  const HALF = 0.775, MAX_SPH = 24;
+  const ice = new THREE.Object3D();
+  ice.position.set(0, 0.45, 0);
+  ice.rotation.y = AZ + 0.55;
+  scene.add(ice);
+  const carve = [];   // {c: Vector3 (ice-local), r}
+  let iceScale = 1;   // shrinks to 0 once the soul is free
+  function sdBox(x, y, z, b, r) {
+    const qx = Math.abs(x) - b + r, qy = Math.abs(y) - b + r, qz = Math.abs(z) - b + r;
+    const o = Math.hypot(Math.max(qx, 0), Math.max(qy, 0), Math.max(qz, 0));
+    return o + Math.min(Math.max(qx, Math.max(qy, qz)), 0) - r;
+  }
+  function smax(a, b, k) { const h = Math.min(Math.max(0.5 - 0.5 * (b - a) / k, 0), 1); return b + (a - b) * h + k * h * (1 - h); }
+  function iceSdf(x, y, z) {
+    const g = Math.max(iceScale, 1e-3); x /= g; y /= g; z /= g;
+    let d = sdBox(x, y, z, HALF, 0.008);
+    let s = 10;
+    for (const sp of carve) s = Math.min(s, Math.hypot(x - sp.c.x, y - sp.c.y, z - sp.c.z) - sp.r);
+    return smax(d, -s, 0.06) * g;
+  }
+  // Fixed sample grid inside the original box to measure how much ice is gone.
+  const samples = [];
+  for (let i = 0; i < 8; i++) for (let j = 0; j < 8; j++) for (let k = 0; k < 8; k++)
+    samples.push([(i + 0.5) / 8 * 2 - 1, (j + 0.5) / 8 * 2 - 1, (k + 0.5) / 8 * 2 - 1].map(v => v * HALF * 0.98));
+  function meltedFraction() {
+    let n = 0; for (const [x, y, z] of samples) if (iceSdf(x, y, z) > 0) n++;
+    return n / samples.length;
+  }
+
+  // Drops
+  const dropGeo = new THREE.SphereGeometry(0.035, 10, 8);
+  dropGeo.scale(1, 1.5, 1);
+  const drops = [];
+
+  // ---------- render targets & line pass ----------
+  const ndMat = new THREE.ShaderMaterial({
+    side: THREE.DoubleSide,
+    vertexShader: `varying vec3 vN; varying float vZ;
+      void main(){ vec4 mv = modelViewMatrix * vec4(position,1.0); vN = normalize(normalMatrix * normal); vZ = -mv.z; gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `varying vec3 vN; varying float vZ;
+      void main(){ vec3 n = normalize(vN); if (!gl_FrontFacing) n = -n; gl_FragColor = vec4(n * 0.5 + 0.5, vZ / 20.0); }`,
+  });
+  const mkTarget = (float) => new THREE.WebGLRenderTarget(1, 1, {
+    minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter,
+    type: float ? THREE.HalfFloatType : THREE.UnsignedByteType,
+  });
+  const rtColor = mkTarget(false), rtGhost = mkTarget(true), rtIce = mkTarget(true);
+  const post = new THREE.ShaderMaterial({
+    uniforms: { tColor: { value: rtColor.texture }, tG: { value: rtGhost.texture }, tI: { value: rtIce.texture },
+                px: { value: new THREE.Vector2() }, ink: { value: theme.ink } },
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`,
+    fragmentShader: `
+      uniform sampler2D tColor, tG, tI; uniform vec2 px; uniform vec3 ink; varying vec2 vUv;
+      float edge(sampler2D t, vec2 uv) {
+        vec4 c = texture2D(t, uv); float mc = step(0.0001, c.a); float e = 0.0;
+        vec2 o[4]; o[0] = vec2(px.x, 0.0); o[1] = vec2(-px.x, 0.0); o[2] = vec2(0.0, px.y); o[3] = vec2(0.0, -px.y);
+        for (int i = 0; i < 4; i++) {
+          vec4 n = texture2D(t, uv + o[i]); float mn = step(0.0001, n.a);
+          e = max(e, abs(mc - mn));
+          if (mc * mn > 0.5) {
+            e = max(e, 1.0 - step(0.82, dot(c.rgb * 2.0 - 1.0, n.rgb * 2.0 - 1.0)));
+            e = max(e, step(0.006, abs(c.a - n.a)));
+          }
+        }
+        return e;
+      }
+      void main() {
+        vec3 col = texture2D(tColor, vUv).rgb;
+        vec4 g = texture2D(tG, vUv), i = texture2D(tI, vUv);
+        float eg = edge(tG, vUv), ei = edge(tI, vUv);
+        // ice lines hide where the ghost is in front of the ice
+        if (g.a > 0.0001 && i.a > 0.0001 && g.a < i.a - 0.002) ei = 0.0;
+        gl_FragColor = vec4(mix(col, ink, max(eg, ei)), 1.0);
+      }`,
+    depthTest: false, depthWrite: false,
+  });
+  const iceMat = new THREE.ShaderMaterial({
+    uniforms: {
+      iceInv: { value: new THREE.Matrix4() }, iceRot: { value: new THREE.Matrix3() }, viewRot: { value: new THREE.Matrix3() },
+      camPos: { value: new THREE.Vector3() }, camRight: { value: new THREE.Vector3() }, camUp: { value: new THREE.Vector3() },
+      camFwd: { value: new THREE.Vector3() }, halfSize: { value: new THREE.Vector2() },
+      sph: { value: Array.from({ length: MAX_SPH }, () => new THREE.Vector4()) }, nSph: { value: 0 }, g: { value: 1 },
+    },
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`,
+    fragmentShader: `
+      uniform mat4 iceInv; uniform mat3 iceRot, viewRot; uniform vec3 camPos, camRight, camUp, camFwd; uniform vec2 halfSize;
+      uniform vec4 sph[${MAX_SPH}]; uniform int nSph; uniform float g; varying vec2 vUv;
+      float sdBox(vec3 p, float b, float r){ vec3 q = abs(p) - vec3(b - r); return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0) - r; }
+      float smax(float a, float b, float k){ float h = clamp(0.5 - 0.5 * (b - a) / k, 0.0, 1.0); return mix(b, a, h) + k * h * (1.0 - h); }
+      float map(vec3 p){
+        p /= g;
+        float d = sdBox(p, ${HALF.toFixed(3)}, 0.008);
+        float s = 10.0; // keep small: a huge sentinel wrecks float32 precision in smax
+        for (int i = 0; i < ${MAX_SPH}; i++) { if (i >= nSph) break; s = min(s, length(p - sph[i].xyz) - sph[i].w); }
+        return smax(d, -s, 0.06) * g;
+      }
+      void main(){
+        vec2 ndc = vUv * 2.0 - 1.0;
+        vec3 ro = camPos + camRight * ndc.x * halfSize.x + camUp * ndc.y * halfSize.y;
+        vec3 o = (iceInv * vec4(ro, 1.0)).xyz, d = normalize((iceInv * vec4(camFwd, 0.0)).xyz);
+        float B = ${HALF.toFixed(3)} * g + 0.02;
+        vec3 inv = 1.0 / d, t0 = (vec3(-B) - o) * inv, t1 = (vec3(B) - o) * inv;
+        vec3 tn = min(t0, t1), tf = max(t0, t1);
+        float tmin = max(max(tn.x, tn.y), tn.z), tmax = min(min(tf.x, tf.y), tf.z);
+        if (tmax < max(tmin, 0.0) || g < 0.01) { gl_FragColor = vec4(0.0); return; }
+        float t = max(tmin, 0.0); bool hit = false;
+        for (int i = 0; i < 96; i++) {
+          float h = map(o + d * t);
+          if (h < 0.0008) { hit = true; break; }
+          t += h; if (t > tmax) break;
+        }
+        if (!hit) { gl_FragColor = vec4(0.0); return; }
+        vec3 p = o + d * t; vec2 e = vec2(0.0015, 0.0);
+        vec3 n = normalize(vec3(map(p + e.xyy) - map(p - e.xyy), map(p + e.yxy) - map(p - e.yxy), map(p + e.yyx) - map(p - e.yyx)));
+        vec3 nv = normalize(viewRot * (iceRot * n));
+        gl_FragColor = vec4(nv * 0.5 + 0.5, t / 20.0);
+      }`,
+    depthTest: false, depthWrite: false,
+  });
+  const iceScene = new THREE.Scene();
+  iceScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), iceMat));
+  function syncIceUniforms() {
+    const u = iceMat.uniforms;
+    ice.updateMatrixWorld(); camera.updateMatrixWorld();
+    u.iceInv.value.copy(ice.matrixWorld).invert();
+    u.iceRot.value.setFromMatrix4(ice.matrixWorld);
+    u.viewRot.value.setFromMatrix4(camera.matrixWorldInverse);
+    u.camPos.value.copy(camera.position);
+    u.camRight.value.setFromMatrixColumn(camera.matrixWorld, 0);
+    u.camUp.value.setFromMatrixColumn(camera.matrixWorld, 1);
+    camera.getWorldDirection(u.camFwd.value);
+    u.halfSize.value.set((camera.right - camera.left) / 2, (camera.top - camera.bottom) / 2);
+    u.nSph.value = carve.length;
+    carve.forEach((sp, i) => u.sph.value[i].set(sp.c.x, sp.c.y, sp.c.z, sp.r));
+    u.g.value = iceScale;
+  }
+  const postScene = new THREE.Scene();
+  const postCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  postScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), post));
+
+  // ---------- sizing ----------
+  let W = 1, H = 1;
+  function resize() {
+    const r = stage.getBoundingClientRect();
+    W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height));
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    renderer.setPixelRatio(dpr); renderer.setSize(W, H, false);
+    const half = 2.05, aspect = W / H;
+    camera.left = -half * aspect; camera.right = half * aspect; camera.top = half; camera.bottom = -half;
+    camera.updateProjectionMatrix();
+    const pw = Math.round(W * dpr), ph = Math.round(H * dpr);
+    [rtColor, rtGhost, rtIce].forEach(t => t.setSize(pw, ph));
+    const thick = Math.max(1.25, dpr * 1.25);
+    post.uniforms.px.value.set(thick / pw, thick / ph);
+    if (!sun.moved) placeSunIdle();
+  }
+
+  // ---------- sun ----------
+  const sun = { x: 0, y: 0, moved: false, on: false, world: new THREE.Vector3() };
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), plane = new THREE.Plane();
+  function placeSunIdle() { setSun(W - 46, 46, false); }
+  function setSun(x, y, moved) {
+    sun.x = Math.min(Math.max(x, 0), W); sun.y = Math.min(Math.max(y, 0), H);
+    if (moved) sun.moved = true;
+    sunEl.style.transform = `translate(${sun.x}px, ${sun.y}px)`;
+    // The heat source sits on a camera-facing plane through the ice, nudged toward the viewer so the near faces melt first.
+    ndc.set(sun.x / W * 2 - 1, -(sun.y / H) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    const toCam = camera.position.clone().sub(ice.position).normalize();
+    plane.setFromNormalAndCoplanarPoint(toCam, ice.position.clone().addScaledVector(toCam, 0.55));
+    ray.ray.intersectPlane(plane, sun.world);
+  }
+  stage.addEventListener("pointermove", e => { const r = stage.getBoundingClientRect(); setSun(e.clientX - r.left, e.clientY - r.top, true); });
+  // The dot is a sun only while the mouse button or a finger is held down.
+  function setSunOn(on) { sun.on = on; sunEl.classList.toggle("on", on); if (on) hint.hidden = true; }
+  stage.addEventListener("pointerdown", e => {
+    if (e.button > 0) return;
+    stage.setPointerCapture(e.pointerId); const r = stage.getBoundingClientRect(); setSun(e.clientX - r.left, e.clientY - r.top, true);
+    setSunOn(true);
+  });
+  for (const type of ["pointerup", "pointercancel", "lostpointercapture"]) stage.addEventListener(type, () => setSunOn(false));
+  stage.addEventListener("contextmenu", e => e.preventDefault());
+
+  // ---------- melt model ----------
+  const HEAT_R = 1.2, GROW = 1.15, REFREEZE = 0.012, FREE_AT = 0.999, THAW_AT = 0.02, SELF_MELT = 0.04;
+  let freeing = false, free = false, thawing = false, puddleR = 0, t = 0, dropBudget = 0, fraction = 0, dripIn = 0;
+  const inv = new THREE.Matrix4(), sunLocal = new THREE.Vector3(), tmp = new THREE.Vector3(), dir = new THREE.Vector3();
+  function stepIce(dt) {
+    ice.updateMatrixWorld(); inv.copy(ice.matrixWorld).invert();
+    sunLocal.copy(sun.world).applyMatrix4(inv);
+    let grown = null, dr = 0;
+    if (sun.on && !freeing) {
+      const ds = iceSdf(sunLocal.x, sunLocal.y, sunLocal.z);
+      const heat = Math.max(0, 1 - Math.max(ds, 0) / HEAT_R) ** 2;
+      if (heat > 0) {
+        dr = GROW * heat * dt;
+        let best = null, bestD = 0.32;
+        for (const sp of carve) { const d = sp.c.distanceTo(sunLocal); if (d < bestD) { best = sp; bestD = d; } }
+        if (!best && carve.length < MAX_SPH) { best = { c: sunLocal.clone(), r: Math.max(0, ds - 0.02) }; carve.push(best); }
+        if (!best) { best = carve.reduce((a, b) => a.c.distanceTo(sunLocal) < b.c.distanceTo(sunLocal) ? a : b); }
+        best.c.lerp(sunLocal, Math.min(1, dt * 2));
+        best.r = Math.min(2.2, best.r + dr);
+        grown = best;
+      }
+    }
+    // Before it starts to thaw, ice the sun has left slowly comes back.
+    // Once it is thawing, every hollow keeps widening on its own, sun or not.
+    if (!freeing) for (let i = carve.length - 1; i >= 0; i--) {
+      if (carve[i] === grown) continue;
+      if (thawing) { carve[i].r = Math.min(2.2, carve[i].r + SELF_MELT * dt); continue; }
+      carve[i].r -= REFREEZE * dt;
+      if (carve[i].r <= 0) carve.splice(i, 1);
+    }
+    if (freeing) iceScale = Math.max(0, iceScale - dt * 0.9);
+    fraction = freeing ? 1 - iceScale * (1 - fraction) : meltedFraction();
+    if (!thawing && fraction >= THAW_AT) thawing = true;
+    // A thawing block drips from its underside every so often.
+    if (thawing && !freeing && (dripIn -= dt) <= 0) {
+      dripIn = 0.45 + Math.random() * 0.9;
+      for (let tries = 0; tries < 8; tries++) {
+        const x = (Math.random() * 2 - 1) * HALF * 0.9, z = (Math.random() * 2 - 1) * HALF * 0.9;
+        if (iceSdf(x, -HALF + 0.03, z) < 0) { spawnDrop(tmp.set(x, -HALF, z).applyMatrix4(ice.matrixWorld)); break; }
+      }
+    }
+    // Drops leave from the lower rim of the hollow that is growing.
+    if (grown && dr > 0) {
+      dropBudget += dr * 10;
+      while (dropBudget > 1) {
+        dropBudget -= 1;
+        for (let tries = 0; tries < 6; tries++) {
+          dir.set((Math.random() - 0.5) * 1.2, -1, (Math.random() - 0.5) * 1.2).normalize();
+          tmp.copy(grown.c).addScaledVector(dir, grown.r);
+          const v = iceSdf(tmp.x, tmp.y, tmp.z);
+          if (Math.abs(v) < 0.05 && Math.max(Math.abs(tmp.x), Math.abs(tmp.y), Math.abs(tmp.z)) < HALF) {
+            spawnDrop(tmp.applyMatrix4(ice.matrixWorld)); break;
+          }
+        }
+      }
+    }
+    return fraction;
+  }
+  function spawnDrop(p) {
+    if (drops.length > 40) return;
+    const m = onLayers(new THREE.Mesh(dropGeo, inkMat), L_COLOR);
+    m.position.copy(p); m.userData.v = 0;
+    scene.add(m); drops.push(m);
+  }
+  function stepDrops(dt) {
+    for (let k = drops.length - 1; k >= 0; k--) {
+      const d = drops[k];
+      d.userData.v -= 6 * dt; d.position.y += d.userData.v * dt;
+      if (d.position.y < puddle.position.y) {
+        scene.remove(d); drops.splice(k, 1);
+        puddleR = Math.min(1.05, puddleR + 0.03);
+      }
+    }
+    const target = Math.max(puddleR, free ? 0.95 : 0);
+    const s = puddle.scale.x + (target - puddle.scale.x) * Math.min(1, dt * 3);
+    puddle.scale.set(Math.max(s, 0.001), Math.max(s * 0.75, 0.001), 1);
+    puddle.visible = s > 0.02;
+  }
+
+  // Progress shown to the viewer: 100% when enough ice is gone to set the soul free.
+  // p is how much ice has melted (0..1); the soul goes free only when none is left.
+  const stateFor = p => free ? ["happy", "free!"] : p < 0.05 ? ["asleep", "frozen"] : p < 0.3 ? ["small", "sweating"]
+    : p < 0.7 ? ["open", "melting"] : ["wide", "almost free"];
+  let lastLabel = "";
+  function update(dt) {
+    t += dt;
+    let p = 1;
+    if (!free) {
+      const f = stepIce(dt);
+      p = Math.min(1, f);
+      if (!freeing && f >= FREE_AT) freeing = true;
+      if (freeing && iceScale <= 0) free = true;
+    }
+    stepDrops(dt);
+    const [kind, label] = stateFor(p);
+    setFace(kind);
+    if (free && !reduceMotion) wander(dt);
+    else if (free) ghost.position.y = 0.12;
+    const left = free ? 0 : Math.max(1, Math.round((1 - p) * 100));
+    const text = `ice <b>${left}%</b> · ${label}`;
+    if (text !== lastLabel) { statusEl.innerHTML = text; lastLabel = text; }
+  }
+
+  // Free soul: drift to a random spot in the box, pick another, bob and lean into the motion.
+  const wanderTarget = new THREE.Vector2(), camRight = new THREE.Vector3();
+  let hasTarget = false;
+  function wander(dt) {
+    const pos = ghost.position;
+    if (!hasTarget || Math.hypot(wanderTarget.x - pos.x, wanderTarget.y - pos.z) < 0.08) {
+      const a = Math.random() * Math.PI * 2, r = 0.35 + Math.random() * 0.75;
+      wanderTarget.set(Math.cos(a) * r, Math.sin(a) * r); hasTarget = true;
+    }
+    const dx = wanderTarget.x - pos.x, dz = wanderTarget.y - pos.z, dist = Math.hypot(dx, dz);
+    const speed = Math.min(0.5, dist * 1.5 + 0.08);
+    const vx = dx / dist * speed, vz = dz / dist * speed;
+    pos.x += vx * dt; pos.z += vz * dt;
+    pos.y = 0.16 + Math.sin(t * 2.2) * 0.07;
+    camRight.setFromMatrixColumn(camera.matrixWorld, 0);
+    const side = vx * camRight.x + vz * camRight.z;
+    ghost.rotation.z += (-side * 0.28 - ghost.rotation.z) * Math.min(1, dt * 4);
+    setHem(t * 5);
+  }
+
+  function reset() {
+    carve.length = 0; iceScale = 1; fraction = 0; freeing = false; free = false; thawing = false; puddleR = 0; dropBudget = 0; dripIn = 0;
+    hasTarget = false; ghost.position.set(0, 0, 0); ghost.rotation.z = 0;
+    drops.forEach(d => scene.remove(d)); drops.length = 0;
+    ghost.position.y = 0; setHem(0);
+    sun.moved = false; setSunOn(false); hint.hidden = false; placeSunIdle();
+  }
+  document.getElementById("reset").addEventListener("click", reset);
+
+  // ---------- render ----------
+  function render() {
+    renderer.setRenderTarget(rtColor);
+    renderer.setClearColor(theme.bg, 1); renderer.clear();
+    camera.layers.set(L_COLOR); renderer.render(scene, camera);
+
+    renderer.setClearColor(0x000000, 0);
+    scene.overrideMaterial = ndMat;
+    renderer.setRenderTarget(rtGhost); renderer.clear(); camera.layers.set(L_OUTLINE); renderer.render(scene, camera);
+    scene.overrideMaterial = null;
+    syncIceUniforms();
+    renderer.setRenderTarget(rtIce); renderer.clear(); renderer.render(iceScene, postCam);
+
+    renderer.setRenderTarget(null);
+    renderer.render(postScene, postCam);
+  }
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    update(dt); render();
+    if (!canvas.classList.contains("ready")) canvas.classList.add("ready");
+    requestAnimationFrame(frame);
+  }
+
+  readTheme();
+  new ResizeObserver(resize).observe(stage);
+  resize();
+  requestAnimationFrame(frame);
+
+})();
+</script>
