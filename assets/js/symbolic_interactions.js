@@ -9,10 +9,15 @@ const firebaseConfig = {
   measurementId: "G-LSJVHZ48J4"
 };
 
-firebase.initializeApp(firebaseConfig);
+// Greetings are read and written through the Firestore REST API, because it
+// returns each document's createTime (the web SDK does not), so even the oldest
+// greetings get a date without changing any stored data.
+const FIRESTORE = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`;
+const KEY = `key=${firebaseConfig.apiKey}`;
 
-// Get a reference to the Firestore service
-const db = firebase.firestore();
+// Visiting the page with ?admin shows a Google sign-in. Firestore rules decide
+// who may actually hide a greeting; the page only offers the buttons.
+const ADMIN_MODE = new URLSearchParams(location.search).has("admin");
 
 // Define the greetings
 const greetings = [
@@ -21,7 +26,7 @@ const greetings = [
   "Tapped on the shoulder lightly 🤚",
   "Called the name 🏷️",
   "Clinked glasses 🍻🥂",
-  "Manual Input...", 
+  "Manual Input...",
 ];
 
 // Get the elements
@@ -35,6 +40,28 @@ greetings.forEach(greeting => {
   greetingSelect.add(option);
 });
 
+/** Turns a REST document into {id, nickname, text, hidden, createdAt}. */
+function fromDoc(doc) {
+  const f = doc.fields || {};
+  return {
+    id: doc.name.split('/').pop(),
+    nickname: f.nickname ? f.nickname.stringValue : '',
+    text: f.text ? f.text.stringValue : '',
+    hidden: f.hidden ? f.hidden.booleanValue === true : false,
+    createdAt: new Date(doc.createTime),
+  };
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
 class GreetingController {
   constructor(model, view) {
     this.model = model;
@@ -44,20 +71,36 @@ class GreetingController {
     this.view.prevButton.addEventListener('click', () => this.prevPage());
     this.view.nextButton.addEventListener('click', () => this.nextPage());
     this.view.greetingSelect.addEventListener('change', () => this.selectGreeting());
+    this.view.onToggleHidden = (greeting) => this.toggleHidden(greeting);
 
     this.model.subscribe(() => this.view.render(this.model));
     this.view.render(this.model);
+
+    if (ADMIN_MODE) this.startAdmin();
   }
 
-  addGreeting() {
-    const nickname = this.view.nicknameInput.value;
+  async addGreeting() {
+    const nickname = this.view.nicknameInput.value.trim();
     let text;
     if (greetingSelect.value === 'Manual Input...') {
-      text = `${this.view.greetingTextInput.value} ${this.view.greetingEmojiInput.value}`;
+      text = `${this.view.greetingTextInput.value} ${this.view.greetingEmojiInput.value}`.trim();
     } else {
       text = this.view.greetingSelect.value;
     }
-    this.model.addGreeting(nickname, text);
+    if (!nickname) return this.view.setStatus('Write a nickname first.');
+    if (!text) return this.view.setStatus('Write a greeting first.');
+
+    this.view.setSending(true);
+    this.view.setStatus('');
+    try {
+      await this.model.addGreeting(nickname, text);
+      this.view.clearForm();
+      this.view.setStatus('✓ Sent! Your greeting is the first one on page 1.');
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      this.view.setStatus("Couldn't send — try again.");
+    }
+    this.view.setSending(false);
   }
 
   prevPage() {
@@ -67,7 +110,7 @@ class GreetingController {
   }
 
   nextPage() {
-    if ((this.model.currentPage + 1) * this.model.messagesPerPage < this.model.greetings.length) {
+    if (this.model.currentPage + 1 < this.model.totalPages()) {
       this.model.setPage(this.model.currentPage + 1);
     }
   }
@@ -79,30 +122,70 @@ class GreetingController {
       this.view.setCustomGreetingMode(false);
     }
   }
+
+  async startAdmin() {
+    this.view.renderAdminBar(null);
+    try {
+      await loadScript("https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js");
+      await loadScript("https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js");
+    } catch (error) {
+      return this.view.setAdminStatus("Couldn't load sign-in.");
+    }
+    firebase.initializeApp(firebaseConfig);
+    this.view.onSignIn = () => firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .catch(error => this.view.setAdminStatus(`Sign-in failed: ${error.message}`));
+    this.view.onSignOut = () => firebase.auth().signOut();
+    firebase.auth().onAuthStateChanged(user => {
+      this.model.setAdmin(user);
+      this.view.renderAdminBar(user);
+    });
+  }
+
+  async toggleHidden(greeting) {
+    this.view.setAdminStatus('');
+    try {
+      await this.model.setHidden(greeting, !greeting.hidden);
+    } catch (error) {
+      console.error("Error hiding document: ", error);
+      this.view.setAdminStatus(error.status === 403
+        ? "This account can't hide greetings (check the Firestore rules)."
+        : "Couldn't save — try again.");
+    }
+  }
 }
 
 class GreetingModel {
   constructor() {
     /**
-     * The greetings array will hold objects.
-     * Each object represents a greeting and has two properties:
-     * - actor: the name of the social actor who made the greeting
-     * - text: a string with an emoji describing the greeting
-     * @type {Array<{actor: string, text: string}>}
+     * Every greeting, newest first.
+     * @type {Array<{id: string, nickname: string, text: string, hidden: boolean, createdAt: Date}>}
      */
     this.greetings = [];
     this.currentPage = 0;
     this.messagesPerPage = 6;
     this.subscribers = [];
+    this.admin = null;     // the signed-in Firebase user in ?admin mode
+    this.mineId = null;    // the greeting this visitor just left
 
-    // Load the greetings from Firestore
-    db.collection("greetings").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const greeting = doc.data();
-        this.greetings.push(greeting);
-      });
-      this.notifySubscribers();
-    });
+    this.load();
+  }
+
+  async load() {
+    const all = [];
+    let pageToken = '';
+    try {
+      do {
+        const response = await fetch(`${FIRESTORE}/greetings?pageSize=300&${KEY}${pageToken ? `&pageToken=${pageToken}` : ''}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        (data.documents || []).forEach(doc => all.push(fromDoc(doc)));
+        pageToken = data.nextPageToken || '';
+      } while (pageToken);
+    } catch (error) {
+      console.log("Error getting documents: ", error);
+    }
+    this.greetings = all.sort((a, b) => b.createdAt - a.createdAt);
+    this.notifySubscribers();
   }
 
   subscribe(observerFunction) {
@@ -113,29 +196,54 @@ class GreetingModel {
     this.subscribers.forEach(observerFunction => observerFunction(this));
   }
 
+  /** Hidden greetings are left out for visitors and kept (marked) for the admin. */
+  visible() {
+    return this.admin ? this.greetings : this.greetings.filter(g => !g.hidden);
+  }
+
+  totalPages() {
+    return Math.max(1, Math.ceil(this.visible().length / this.messagesPerPage));
+  }
+
   /**
-   * Creates a new greeting object and adds it to the greetings array.
-   * The Firestore database is also updated.
-   * @param {string} nickname - The name of the person who is greeting.
-   * @param {string} greeting - The type of greeting.
+   * Saves a greeting, then puts it at the top of page 1.
+   * Resolves only once Firestore has accepted it.
    */
-  addGreeting(nickname, text) {
-    const greetingObj = { nickname, text };
-
-    this.greetings.push(greetingObj);
-    if (this.greetings.length % this.messagesPerPage === 1 && this.greetings.length > 1) {
-      this.currentPage++;
-    }
-    this.notifySubscribers();
-
-    // Add the greeting to Firestore
-    db.collection("greetings").add(greetingObj)
-    .then((docRef) => {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-      console.error("Error adding document: ", error);
+  async addGreeting(nickname, text) {
+    const response = await fetch(`${FIRESTORE}/greetings?${KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: { nickname: { stringValue: nickname }, text: { stringValue: text } } }),
     });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const greeting = fromDoc(await response.json());
+    this.greetings.unshift(greeting);
+    this.mineId = greeting.id;
+    this.currentPage = 0;
+    this.notifySubscribers();
+  }
+
+  async setHidden(greeting, hidden) {
+    const token = await this.admin.getIdToken();
+    const response = await fetch(
+      `${FIRESTORE}/greetings/${greeting.id}?updateMask.fieldPaths=hidden&currentDocument.exists=true&${KEY}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ fields: { hidden: { booleanValue: hidden } } }),
+    });
+    if (!response.ok) {
+      const error = new Error(`HTTP ${response.status}`);
+      error.status = response.status;
+      throw error;
+    }
+    greeting.hidden = hidden;
+    this.notifySubscribers();
+  }
+
+  setAdmin(user) {
+    this.admin = user;
+    this.currentPage = Math.min(this.currentPage, this.totalPages() - 1);
+    this.notifySubscribers();
   }
 
   setPage(page) {
@@ -147,20 +255,26 @@ class GreetingModel {
 class GreetingView {
   constructor() {
     this.messageBox = document.getElementById('messageBox');
-    this.boxes = this.messageBox.querySelectorAll('.box');
+    this.boxes = Array.from(this.messageBox.querySelectorAll('.box'));
     this.nicknameInput = document.getElementById('nicknameInput');
-    this.nicknameParticle = document.getElementById('nicknameParticle');
-    
+
     this.customGreetingDiv = document.getElementById('customGreetingDiv');
     this.greetingTextInput = document.getElementById('greetingTextInput');
     this.greetingEmojiInput = document.getElementById('greetingEmojiInput');
-    
+
     this.greetingSelect = document.getElementById('greetingSelect');
 
     this.sendButton = document.getElementById('sendButton');
     this.prevButton = document.getElementById('prevButton');
     this.nextButton = document.getElementById('nextButton');
     this.pageLabel = document.getElementById('pageLabel');
+    this.sendStatus = document.getElementById('sendStatus');
+    this.adminBar = document.getElementById('adminBar');
+
+    this.highlighted = false;
+    this.onToggleHidden = () => {};
+    this.onSignIn = () => {};
+    this.onSignOut = () => {};
   }
 
   setCustomGreetingMode(mode) {
@@ -173,58 +287,138 @@ class GreetingView {
     }
   }
 
-  _chooseParticle(hangul) {
-    // Get the last character of the nickname
-    const lastChar = hangul[hangul.length - 1];
-  
-    // Get the Unicode of the last character
-    const lastCharUnicode = lastChar.charCodeAt(0);
-  
-    // Check if the last character is Hangul
-    if (lastCharUnicode >= 0xAC00 && lastCharUnicode <= 0xD7A3) {
-      // Calculate the index of the last character within the Hangul block
-      const index = lastCharUnicode - 0xAC00;
-  
-      // Calculate the final (jongseong) consonant
-      const finalConsonant = index % 28;
-  
-      // If there is a final consonant, use "이". Otherwise, use "가".
-      return finalConsonant !== 0 ? "이" : "가";
+  setSending(sending) {
+    this.sendButton.disabled = sending;
+    this.sendButton.textContent = sending ? 'Sending…' : 'Upload';
+  }
+
+  setStatus(message) {
+    this.sendStatus.textContent = message;
+  }
+
+  clearForm() {
+    this.greetingTextInput.value = '';
+    this.greetingEmojiInput.value = '';
+  }
+
+  _formatDate(date) {
+    const pad = n => String(n).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  }
+
+  // Scatters greetings over the boxes in the same order every time for a given
+  // page, so the wall does not rearrange itself when a greeting is hidden.
+  _boxesFor(page) {
+    let seed = page + 1;
+    const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const boxes = this.boxes.slice();
+    for (let i = boxes.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [boxes[i], boxes[j]] = [boxes[j], boxes[i]];
     }
-  
-    // If the last character is not Hangul, use "이" as a default
-    return "(이)가";
+    return boxes;
+  }
+
+  _message(greeting, model) {
+    const message = document.createElement('div');
+    message.className = 'message';
+
+    const text = document.createElement('div');
+    text.className = 'greeting';
+    text.textContent = `${greeting.nickname} ${greeting.text}`;
+    message.appendChild(text);
+
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    message.appendChild(meta);
+
+    if (greeting.id === model.mineId) {
+      message.classList.add('mine');
+      meta.textContent = 'just now · yours';
+    } else {
+      meta.textContent = this._formatDate(greeting.createdAt);
+    }
+
+    if (model.admin) {
+      if (greeting.hidden) {
+        message.classList.add('hidden');
+        meta.textContent += ' · hidden';
+      }
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'link-button';
+      toggle.textContent = greeting.hidden ? 'show' : 'hide';
+      toggle.addEventListener('click', () => this.onToggleHidden(greeting));
+      meta.appendChild(toggle);
+    }
+    return message;
   }
 
   render(model) {
     // Clear the boxes
-    this.boxes.forEach(box => box.innerText = '');
+    this.boxes.forEach(box => box.replaceChildren());
 
     // Add messages for the current page
     const start = model.currentPage * model.messagesPerPage;
     const end = start + model.messagesPerPage;
+    const greetingsInPage = model.visible().slice(start, end);
 
-    const greetingsInPage = model.greetings.slice(start, end);
-    const shuffledBoxes = Array.from(this.boxes).sort(() => 0.5 - Math.random());
-    const selectedBoxes = shuffledBoxes.slice(0, greetingsInPage.length);
+    // The greeting this visitor just left always takes the first box.
+    const boxes = this._boxesFor(model.currentPage);
+    if (greetingsInPage.some(g => g.id === model.mineId)) {
+      boxes.splice(boxes.indexOf(this.boxes[0]), 1);
+      boxes.unshift(this.boxes[0]);
+      greetingsInPage.sort((a, b) => (b.id === model.mineId) - (a.id === model.mineId));
+    }
 
     greetingsInPage.forEach((greeting, i) => {
-      // const text = `${greeting.nickname}${this._chooseParticle(greeting.nickname)} ${greeting.text}`;
-      const text = `${greeting.nickname} ${greeting.text}`;
-      selectedBoxes[i].innerText = text;
+      const message = this._message(greeting, model);
+      boxes[i].appendChild(message);
+      if (greeting.id === model.mineId && !this.highlighted) {
+        // Fill it with sunlight for a moment, then let it fade.
+        this.highlighted = true;
+        message.classList.add('fresh');
+        setTimeout(() => {
+          this.messageBox.querySelectorAll('.fresh').forEach(m => m.classList.remove('fresh'));
+        }, 4000);
+      }
     });
 
     // Update the page label
-    const totalPages = Math.ceil(model.greetings.length / model.messagesPerPage);
-    this.pageLabel.textContent = `Page ${model.currentPage + 1} of ${totalPages}`;
+    let label = `Page ${model.currentPage + 1} of ${model.totalPages()} · newest first`;
+    const hidden = model.greetings.filter(g => g.hidden).length;
+    if (model.admin && hidden) label += ` · ${hidden} hidden`;
+    this.pageLabel.textContent = label;
+    this.prevButton.disabled = model.currentPage === 0;
+    this.nextButton.disabled = model.currentPage + 1 >= model.totalPages();
+  }
+
+  renderAdminBar(user) {
+    this.adminBar.hidden = false;
+    this.adminBar.replaceChildren();
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'link-button';
+    if (user) {
+      this.adminBar.append(`admin: ${user.displayName || user.email}`);
+      button.textContent = 'sign out';
+      button.addEventListener('click', () => this.onSignOut());
+    } else {
+      this.adminBar.append('admin:');
+      button.textContent = 'sign in with Google';
+      button.addEventListener('click', () => this.onSignIn());
+    }
+    this.adminBar.appendChild(button);
+    this.adminStatus = document.createElement('span');
+    this.adminStatus.style.marginLeft = '12px';
+    this.adminBar.appendChild(this.adminStatus);
+  }
+
+  setAdminStatus(message) {
+    if (this.adminStatus) this.adminStatus.textContent = message;
   }
 }
 
 const model = new GreetingModel();
 const view = new GreetingView();
 const controller = new GreetingController(model, view);
-
-
-
-
-
