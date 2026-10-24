@@ -15,7 +15,7 @@ entries:
         url: /projects
   - title: recent posts
     post_list:
-      limit: 2
+      limit: 3
       show_more: true
       show_more_text: See more...
       show_more_url: archive.html
