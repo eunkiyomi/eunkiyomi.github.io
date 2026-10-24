@@ -89,6 +89,9 @@ class GreetingController {
     }
     if (!nickname) return this.view.setStatus('Write a nickname first.');
     if (!text) return this.view.setStatus('Write a greeting first.');
+    // Same limits as the Firestore rules (which count characters, not UTF-16 units).
+    if ([...nickname].length > 50) return this.view.setStatus('Nicknames can be up to 50 characters.');
+    if ([...text].length > 100) return this.view.setStatus('Greetings can be up to 100 characters.');
 
     this.view.setSending(true);
     this.view.setStatus('');

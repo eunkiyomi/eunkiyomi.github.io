@@ -111,7 +111,7 @@ authors:
 <button id="prevButton" type="button">← Newer</button>
 <button id="nextButton" type="button">Older →</button>
 <form>
-  <input id="nicknameInput" placeholder="Nickname" type="text" size="15">
+  <input id="nicknameInput" placeholder="Nickname" type="text" size="15" maxlength="50">
   <div id="customGreetingDiv">
     <input id="greetingTextInput" type="text" name="greetingTextInput" 
           placeholder="Greeting">
