@@ -42,13 +42,6 @@ authors:
 }
 .frozen-soul button:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
 .frozen-soul button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
-.how summary { cursor: pointer; list-style: none; }
-.how summary::-webkit-details-marker { display: none; }
-.how summary::before { content: "▸ "; }
-.how[open] summary::before { content: "▾ "; }
-.how summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
-.how ul { margin: 6px 0 0; padding-left: 36px; list-style: circle; }
-.frozen-soul li { min-width: 0; }
 .frozen-soul .fallback { padding: 24px; }
 </style>
 
@@ -66,17 +59,6 @@ authors:
     <span class="status" id="status">ice <b>100%</b> · frozen</span>
     <button type="button" id="reset">Refreeze</button>
   </div>
-
-  <details class="how">
-    <summary>how it works</summary>
-      <ul>
-        <li>A small dot follows your cursor. While you hold the mouse button down (or keep a finger on the box), it is a sun; let go and it is a dot again.</li>
-        <li>Ice melts where the sun is close, so the side facing the sun goes first. Move around to free the soul.</li>
-        <li>Once it starts to melt, the ice keeps dripping and melting on its own, just more slowly.</li>
-        <li>Drops fall from the melting ice and the puddle grows.</li>
-        <li>When the ice is gone, the soul is free to wander around the box.</li>
-      </ul>
-  </details>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -353,7 +335,7 @@ authors:
   stage.addEventListener("contextmenu", e => e.preventDefault());
 
   // ---------- melt model ----------
-  const HEAT_R = 1.2, GROW = 1.15, REFREEZE = 0.012, FREE_AT = 0.999, THAW_AT = 0.02, SELF_MELT = 0.04;
+  const HEAT_R = 1.2, GROW = 1.15, REFREEZE = 0.012, FREE_AT = 0.8, THAW_AT = 0.02, SELF_MELT = 0.04;
   let freeing = false, free = false, thawing = false, puddleR = 0, t = 0, dropBudget = 0, fraction = 0, dripIn = 0;
   const inv = new THREE.Matrix4(), sunLocal = new THREE.Vector3(), tmp = new THREE.Vector3(), dir = new THREE.Vector3();
   function stepIce(dt) {
@@ -432,7 +414,7 @@ authors:
   }
 
   // Progress shown to the viewer: 100% when enough ice is gone to set the soul free.
-  // p is how much ice has melted (0..1); the soul goes free only when none is left.
+  // p is how much ice has melted (0..1); the soul goes free once 20% of the ice is left (FREE_AT).
   const stateFor = p => free ? ["happy", "free!"] : p < 0.05 ? ["asleep", "frozen"] : p < 0.3 ? ["small", "sweating"]
     : p < 0.7 ? ["open", "melting"] : ["wide", "almost free"];
   let lastLabel = "";
