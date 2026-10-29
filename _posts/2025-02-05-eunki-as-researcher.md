@@ -54,9 +54,9 @@ I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.
 Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [projects](/projects).
 
 My research aims to understand existing and build new sociotechnical systems for formal and informal caring relationships. My interests include the following broad questions:
-- How are people represented as data?
-- Who would become invisible, or too much visible?
-- How are the existing sociotechnical systems configured with such (in)visibility?
+- How do people represent themselves and others through data in sociotechnical systems?
+- Who would become invisible, too much visible, or misrepresented? What are their harms?
+<!-- - How are the existing sociotechnical systems configured with such (in)visibility? -->
 - What should those sociotechnical systems look like, and how can we build them?
 
 I critically studied [Care Fish](/assets/docs/26-cscw-poster-care-fish.pdf), a technology probe of an AI scribe for social work document automation, discussing how it may reinforce an epistemic hierarchy that undervalues street-level discretion. 
