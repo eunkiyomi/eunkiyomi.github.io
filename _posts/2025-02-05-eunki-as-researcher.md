@@ -53,7 +53,7 @@ I was advised by Prof. Uichin Lee at the [Interactive Computing Lab](https://ic.
 
 Please see my [CV](/assets/docs/Eunki_s_CV.pdf) and [projects](/projects).
 
-My research aims to understand existing and build new sociotechnical systems for formal and informal care practices. I am interested in the following broad questions:
+My research aims to understand existing and build new sociotechnical systems for formal and informal care relationships. I am interested in the following broad questions:
 - Whose voices are invisible?
 - How are the existing sociotechnical systems configured with such invisibility?
 - What should those sociotechnical systems look like, and how can we build them?
@@ -63,7 +63,7 @@ I designed and studied [Robotic Counseling Center](/assets/docs/25-cscw-rcc.pdf)
 
 My work has been presented at ACM CSCW and in workshops at ACM CHI and ACM CSCW.
 
-I served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor at KAIST.
+I served on the Student & Minority Human Rights Committee of the Undergraduate Student Council and worked as a trained peer counselor at KAIST and Republic of Korea Army.
 
 <!-- [^public-spheres]: Some people may realize Jürgen Habermas's theory when I say 'public spheres.' I think that can be a good start to share my hope of genuine and inclusive communication, but I am not an expert on his theory yet. Thus, please do not think of it as a rigorous use of 'public sphere,' if you are knowledgeable about that concept. Also, I intentionally used a plural form of 'public spheres' because I think there can be multiple forms of public spheres working well in particular contexts, which I hope to explore. -->
 
